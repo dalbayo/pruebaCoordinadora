@@ -4,6 +4,8 @@ import fastifyRedis from '@fastify/redis';
 
 import { connection } from "./database/db.js"
 import routes from "./routers/routers.js"
+import {getRutasAll} from "./controlers/RutasControler.js";
+import {ERRORES_HTTP} from "./utils/Errores.js";
 
 export const fastify = Fastify({
     logger:true
