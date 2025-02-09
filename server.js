@@ -3,21 +3,40 @@ import {fastifyJwt} from "@fastify/jwt";
 import fastifyRedis from '@fastify/redis';
 
 import { connection } from "./database/db.js"
+import routes from "./routers/routers.js"
 
 export const fastify = Fastify({
     logger:true
 })
 
 
+fastify.register(routes,{prefix:"/api"})
 fastify.register(fastifyJwt, {
     secret: process.env.JWT_PRIVATE_KEY
 })
+/*
+
+// aca inicia eel error
+fastify.register(fastifyRedis, {
+    url: 'redis://localhost:6380',
+    host: '127.0.0.1',
+    password: '***',
+    port: 6380, // Redis port
+    family: 4   // 4 (IPv4) or 6 (IPv6)*!/!*!/
+});
+// aca finaliza el error
+*/
 
 
 
-fastify.get('/', async function handler (request, reply) {
-    return { hello: 'world' }
-})
+
+/*fastify.get('/', async function handler (request, reply) {
+    const { redis } = fastify
+    let result = redis.get('Test', (err, val) => {
+        return err || val;
+    });
+    return { result }
+});*/
 
 const port = process.env.port
 export const validTokens = new Map();
