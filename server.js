@@ -5,8 +5,6 @@ import fastifySwagger from '@fastify/swagger';
 import fastifySwaggerUi from '@fastify/swagger-ui';
 import { connection } from "./database/db.js"
 import routes from "./routers/routers.js"
-import {getRutasAll} from "./controlers/RutasControler.js";
-import {ERRORES_HTTP} from "./utils/Errores.js";
 
 export const fastify = Fastify({
     logger:true
@@ -76,8 +74,8 @@ fastify.register(fastifySwaggerUi, {
 
 
 fastify.register(routes,{prefix:"/api"})
-
 /*
+
 // aca inicia eel error
 fastify.register(fastifyRedis, {
     url: 'redis://localhost:6380',
