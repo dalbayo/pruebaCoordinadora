@@ -4,7 +4,14 @@ import {getVehiculoByIdActivo} from "./VehiculoControler.js";
 import {ESTADOS_PLANILLA} from "../utils/EstadoPlanillaViaje.js";
 import {ESTADOS_VEHICULO} from "../utils/EstadoVehiculos.js";
 
-
+/**
+ * @description Obtiene todas las planillas de viaje con información relacionada, con paginación.
+ * @route GET /planillas/page/{pagina}
+ * @param {Object} request - Objeto de solicitud de Fastify.
+ * @param {Object} reply - Objeto de respuesta de Fastify.
+ * @returns {Promise<void>}
+ * @author Daniel Barrera
+ */
 
 export const getPlanillasViajeAll = async (request, reply) =>{
     try {
@@ -54,7 +61,14 @@ export const getPlanillasViajeAll = async (request, reply) =>{
     }
 }
 
-
+/**
+ * @description Obtiene una planilla de viaje por su ID.
+ * @route GET /planillas/{id}
+ * @param {Object} request - Objeto de solicitud de Fastify.
+ * @param {Object} reply - Objeto de respuesta de Fastify.
+ * @returns {Promise<void>}
+ * @author Daniel Barrera
+ */
 export const getPlanillaViajeById = async (request, reply) =>{
     try {
         const id = Number(request.params.id)
@@ -108,6 +122,22 @@ export const getPlanillaViajeById = async (request, reply) =>{
 
 
 
+/**
+ * @description Crea una nueva planilla de viaje.
+ * @route POST /planillas
+ * @param {Object} request - Objeto de solicitud de Fastify. Se espera un body con los datos de la planilla:
+ *   - peso (obligatorio)
+ *   - valorViaje (obligatorio)
+ *   - cantidadEncomiendas (obligatorio)
+ *   - notas (opcional)
+ *   - fechaSalida (obligatorio)
+ *   - fechaFinEstimada (obligatorio)
+ *   - rutaPrincipal (obligatorio)
+ *   - vehiculo (obligatorio)
+ * @param {Object} reply - Objeto de respuesta de Fastify.
+ * @returns {Promise<void>}
+ * @author Daniel Barrera
+ */
 export const createPlanillaViaje = async (request, reply) =>{
     try {
 
@@ -168,7 +198,14 @@ export const createPlanillaViaje = async (request, reply) =>{
 
 
 
-
+/**
+ * @description Marca una planilla de viaje como despachada (en ruta).
+ * @route PUT /planillas/{id}/despacho
+ * @param {Object} request - Objeto de solicitud de Fastify.
+ * @param {Object} reply - Objeto de respuesta de Fastify.
+ * @returns {Promise<void>}
+ * @author Daniel Barrera
+ */
 export const despacharPlanillaDeViaje = async (request, reply) =>{
     try {
 

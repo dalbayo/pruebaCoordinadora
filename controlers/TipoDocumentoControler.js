@@ -4,7 +4,14 @@ import {fastifyRedis} from "@fastify/redis";
 
 
 
-
+/**
+ * @description Obtiene todos los tipos de documento.
+ * @route GET /tipos-documento
+ * @param {Object} request - Objeto de solicitud de Fastify.
+ * @param {Object} reply - Objeto de respuesta de Fastify.
+ * @returns {Promise<void>}
+ * @author Daniel Barrera
+ */
 export const getTipoDocumentosAll = async (request, reply) =>{
     try {
 

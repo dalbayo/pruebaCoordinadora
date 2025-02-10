@@ -2,7 +2,23 @@ import { connection } from "../database/db.js";
 import {ERRORES_HTTP} from "../utils/Errores.js";
 
 
+/**
+ * @description controlador de personas
+ * @route GET /login/
+ * @param {Object} request - Objeto de solicitud de Fastify.
+ * @param {Object} reply - Objeto de respuesta de Fastify.
+ * @returns {Promise<void>}
+ * @author Daniel Barrera
+ */
 
+/**
+ * @description Obtiene todas las personas con información relacionada al tipo de documento.
+ * @route GET /personas
+ * @param {Object} request - Objeto de solicitud de Fastify.
+ * @param {Object} reply - Objeto de respuesta de Fastify.
+ * @returns {Promise<void>}
+ * @author Daniel Barrera
+ */
 export const getPersonasAll = async (request, reply) =>{
     try {
         console.error("inicia getAllUsusarios ")
@@ -41,6 +57,14 @@ export const getPersonasAll = async (request, reply) =>{
     }
 }
 
+/**
+ * @description Obtiene una persona por su ID, incluyendo información relacionada al tipo de documento.
+ * @route GET /personas/{id}
+ * @param {Object} request - Objeto de solicitud de Fastify.
+ * @param {Object} reply - Objeto de respuesta de Fastify.
+ * @returns {Promise<void>}
+ * @author Daniel Barrera
+ */
 
 export const getPersonaById = async (request, reply) =>{
     try {
@@ -87,7 +111,14 @@ export const getPersonaById = async (request, reply) =>{
     }
 }
 
-
+/**
+ * @description Obtiene una persona por su número y tipo de documento, incluyendo información relacionada.
+ * @route GET /personas/documento/{numeroDocumento}/tipo/{tipoDocumento}
+ * @param {Object} request - Objeto de solicitud de Fastify.
+ * @param {Object} reply - Objeto de respuesta de Fastify.
+ * @returns {Promise<void>}
+ * @author Daniel Barrera
+ */
 export const getPersonaByDocumentoAndTipo = async (request, reply) =>{
     try {
         const numeroDocumento = request.params.numeroDocumento
@@ -134,7 +165,22 @@ export const getPersonaByDocumentoAndTipo = async (request, reply) =>{
 }
 
 
-
+/**
+ * @description Crea una nueva persona.
+ * @route POST /personas
+ * @param {Object} request - Objeto de solicitud de Fastify. Se espera un body con los datos de la persona:
+ *   - nombres (obligatorio)
+ *   - primerApellido (obligatorio)
+ *   - segundoApellido (opcional)
+ *   - correo (obligatorio)
+ *   - telefono (obligatorio)
+ *   - direccion (obligatorio)
+ *   - numeroDocumento (obligatorio)
+ *   - tipoDocumento (obligatorio)
+ * @param {Object} reply - Objeto de respuesta de Fastify.
+ * @returns {Promise<void>}
+ * @author Daniel Barrera
+ */
 export const createPersona = async (request, reply) =>{
     try {
         console.log(request.body)
@@ -183,6 +229,22 @@ export const createPersona = async (request, reply) =>{
 }
 
 
+/**
+ * @description Actualiza los datos de una persona por su ID.
+ * @route PUT /personas/{id}
+ * @param {Object} request - Objeto de solicitud de Fastify. Se espera un body con los datos a actualizar:
+ *   - nombres (opcional)
+ *   - primerApellido (opcional)
+ *   - segundoApellido (opcional)
+ *   - correo (opcional)
+ *   - telefono (opcional)
+ *   - direccion (opcional)
+ *   - numeroDocumento (opcional)
+ *   - tipoDocumento (opcional)
+ * @param {Object} reply - Objeto de respuesta de Fastify.
+ * @returns {Promise<void>}
+ * @author Daniel Barrera
+ */
 
 export const updatePersona = async (request, reply) =>{
     try {
@@ -266,7 +328,14 @@ export const updatePersona = async (request, reply) =>{
 }
 
 
-
+/**
+ * @description Elimina una persona por su ID.
+ * @route DELETE /personas/{id}
+ * @param {Object} request - Objeto de solicitud de Fastify.
+ * @param {Object} reply - Objeto de respuesta de Fastify.
+ * @returns {Promise<void>}
+ * @author Daniel Barrera
+ */
 
 export const deletePersona = async (request, reply) =>{
     try {

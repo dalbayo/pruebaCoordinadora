@@ -71,20 +71,6 @@ const optLogin = {
 const optToken = {
     preValidation: validateToken
 }
-/*
-const optTokenRedis = {
-    preValidation: validateToken,
-    preHandler:  async (req, reply, next) => {
-        const { redis } = fastify
-        redis.get("getAllRutas", (err, val) => {
-            /!*reply.send(err || val)*!/
-
-            reply.status(ERRORES_HTTP["200"].code).send( val);
-        })
-        next()
-    }
-}*/
-
 const routers = async (fastify, options)=>{
     fastify.get("/usuarios/",optToken, getUsusariosAll)
     fastify.get("/usuarios/:id",optToken, getUsusarioById)

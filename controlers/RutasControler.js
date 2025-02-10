@@ -3,7 +3,14 @@ import {ERRORES_HTTP} from "../utils/Errores.js";
 import {fastifyRedis} from "@fastify/redis";
 
 
-
+/**
+ * @description Obtiene todas las rutas con información relacionada, con paginación.
+ * @route GET /rutas/page/{pagina}
+ * @param {Object} request - Objeto de solicitud de Fastify.
+ * @param {Object} reply - Objeto de respuesta de Fastify.
+ * @returns {Promise<void>}
+ * @author Daniel Barrera
+ */
 
 export const getRutasAll = async (request, reply) =>{
     try {

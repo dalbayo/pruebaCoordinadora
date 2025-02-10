@@ -3,67 +3,12 @@ import {ERRORES_HTTP} from "../utils/Errores.js";
 
 
 /**
- * @swagger
- * /usuarios:
- *   get:
- *     summary: Obtiene la lista de todos los usuarios con su perfil asociado.
- *     description: Retorna un listado de usuarios junto con su información de perfil.
- *     tags:
- *       - Usuarios
- *     responses:
- *       200:
- *         description: Lista de usuarios obtenida exitosamente.
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 error:
- *                   type: "null"
- *                 response:
- *                   type: array
- *                   items:
- *                     type: object
- *                     properties:
- *                       id:
- *                         type: integer
- *                         example: 1
- *                       nombres:
- *                         type: string
- *                         example: "Juan"
- *                       primerApelllido:
- *                         type: string
- *                         example: "Pérez"
- *                       segundoApellido:
- *                         type: string
- *                         example: "Gómez"
- *                       correo:
- *                         type: string
- *                         example: "juan.perez@example.com"
- *                       id_perfil:
- *                         type: integer
- *                         example: 2
- *                       nombrePerfil:
- *                         type: string
- *                         example: "Administrador"
- *       500:
- *         description: Error interno del servidor.
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 error:
- *                   type: object
- *                   properties:
- *                     code:
- *                       type: integer
- *                       example: 500
- *                     description:
- *                       type: string
- *                       example: "Error interno del servidor: detalle del error"
- *                 response:
- *                   type: "null"
+ * @description Obtiene todos los usuarios con información relacionada al perfil.
+ * @route GET /usuarios
+ * @param {Object} request - Objeto de solicitud de Fastify.
+ * @param {Object} reply - Objeto de respuesta de Fastify.
+ * @returns {Promise<void>}
+ * @author Daniel Barrera
  */
 export const getUsusariosAll = async (request, reply) =>{
     try {
@@ -101,7 +46,14 @@ export const getUsusariosAll = async (request, reply) =>{
     }
 }
 
-
+/**
+ * @description Obtiene un usuario por su ID, incluyendo información relacionada al perfil.
+ * @route GET /usuarios/{id}
+ * @param {Object} request - Objeto de solicitud de Fastify.
+ * @param {Object} reply - Objeto de respuesta de Fastify.
+ * @returns {Promise<void>}
+ * @author Daniel Barrera
+ */
 export const getUsusarioById = async (request, reply) =>{
     try {
         const id = Number(request.params.id)
@@ -145,6 +97,20 @@ export const getUsusarioById = async (request, reply) =>{
 }
 
 
+/**
+ * @description Crea un nuevo usuario.
+ * @route POST /usuarios
+ * @param {Object} request - Objeto de solicitud de Fastify. Se espera un body con los datos del usuario:
+ *   - nombres (obligatorio)
+ *   - primerApellido (obligatorio)
+ *   - segundoApellido (opcional)
+ *   - correo (obligatorio)
+ *   - clave (obligatorio)
+ *   - perfil (obligatorio)
+ * @param {Object} reply - Objeto de respuesta de Fastify.
+ * @returns {Promise<void>}
+ * @author Daniel Barrera
+ */
 
 export const crearUsuario = async (request, reply) =>{
     try {
@@ -193,7 +159,20 @@ export const crearUsuario = async (request, reply) =>{
 }
 
 
-
+/**
+ * @description Actualiza los datos de un usuario por su ID.
+ * @route PUT /usuarios/{id}
+ * @param {Object} request - Objeto de solicitud de Fastify. Se espera un body con los datos a actualizar:
+ *   - nombres (opcional)
+ *   - primerApellido (opcional)
+ *   - segundoApellido (opcional)
+ *   - correo (opcional)
+ *   - clave (opcional)
+ *   - perfil (opcional)
+ * @param {Object} reply - Objeto de respuesta de Fastify.
+ * @returns {Promise<void>}
+ * @author Daniel Barrera
+ */
 export const updateUsuario = async (request, reply) =>{
     try {
         console.log(request.body)
@@ -275,7 +254,14 @@ export const updateUsuario = async (request, reply) =>{
 }
 
 
-
+/**
+ * @description Elimina un usuario por su ID.
+ * @route DELETE /usuarios/{id}
+ * @param {Object} request - Objeto de solicitud de Fastify.
+ * @param {Object} reply - Objeto de respuesta de Fastify.
+ * @returns {Promise<void>}
+ * @author Daniel Barrera
+ */
 
 export const deleteUsuario = async (request, reply) =>{
     try {

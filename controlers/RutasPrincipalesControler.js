@@ -3,7 +3,14 @@ import {ERRORES_HTTP} from "../utils/Errores.js";
 import {fastifyRedis} from "@fastify/redis";
 
 
-
+/**
+ * @description Obtiene todas las rutas principales con información relacionada, con paginación.
+ * @route GET /rutas-principales/page/{pagina}
+ * @param {Object} request - Objeto de solicitud de Fastify.
+ * @param {Object} reply - Objeto de respuesta de Fastify.
+ * @returns {Promise<void>}
+ * @author Daniel Barrera
+ */
 
 export const getRutasPrincipalesAll = async (request, reply) =>{
     try {
@@ -63,7 +70,14 @@ export const getRutasPrincipalesAll = async (request, reply) =>{
     }
 }
 
-
+/**
+ * @description Obtiene una ruta principal por su ID, incluyendo las rutas secundarias relacionadas.
+ * @route GET /rutas-principales/{id}
+ * @param {Object} request - Objeto de solicitud de Fastify.
+ * @param {Object} reply - Objeto de respuesta de Fastify.
+ * @returns {Promise<void>}
+ * @author Daniel Barrera
+ */
 
 export const getRutaPrincipalById = async (request, reply) =>{
     try {

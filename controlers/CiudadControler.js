@@ -2,18 +2,28 @@ import { connection } from "../database/db.js";
 import {ERRORES_HTTP} from "../utils/Errores.js";
 import {fastifyRedis} from "@fastify/redis";
 
+/**
+ * @description controlador de ciudades
+ * @route GET /ciudades/{pagina}
+ * @param {Object} request - Objeto de solicitud de Fastify.
+ * @param {Object} reply - Objeto de respuesta de Fastify.
+ * @returns {Promise<void>}
+ * @author Daniel Barrera
+ */
 
 
 
+/**
+ * @description Obtiene todas las ciudades con paginación.
+ * @route GET /ciudades/{pagina}
+ * @param {Object} request - Objeto de solicitud de Fastify.
+ * @param {Object} reply - Objeto de respuesta de Fastify.
+ * @returns {Promise<void>}
+ * @author Daniel Barrera
+ */
 export const getCiudadesAll = async (request, reply) =>{
     try {
-        /*const { redis } = fastifyRedis
-        redis.get("getAllRutas", (err, val) => {
-            /!*reply.send(err || val)*!/
 
-            reply.status(ERRORES_HTTP["200"].code).send( val);
-        })
-*/
 
         const pagina = Number(request.params.pagina)
         let paginado=50

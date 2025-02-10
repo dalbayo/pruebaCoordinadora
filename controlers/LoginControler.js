@@ -2,7 +2,26 @@ import { connection } from "../database/db.js";
 import {fastify, validTokens} from "../server.js";
 import {ERRORES_HTTP} from "../utils/Errores.js";
 
+/**
+ * @description controlador de login
+ * @route GET /login/
+ * @param {Object} request - Objeto de solicitud de Fastify.
+ * @param {Object} reply - Objeto de respuesta de Fastify.
+ * @returns {Promise<void>}
+ * @author Daniel Barrera
+ */
 
+
+/**
+ * @description Inicia sesión de usuario y genera un token JWT.
+ * @route POST /usuarios/login
+ * @param {Object} request - Objeto de solicitud de Fastify. Se espera un body con:
+ *   - correo (obligatorio): Correo electrónico del usuario.
+ *   - clave (obligatorio): Contraseña del usuario.
+ * @param {Object} reply - Objeto de respuesta de Fastify.
+ * @returns {Promise<void>}
+ * @author Daniel Barrera
+ */
 
 export const loginUsuario = async (request, reply) =>{
     try {/*
@@ -56,7 +75,14 @@ export const loginUsuario = async (request, reply) =>{
     }
 }
 
-
+/**
+ * @description Cierra la sesión de usuario (elimina el token JWT).
+ * @route DELETE /usuarios/logout  (o POST /usuarios/logout si prefieres usar POST)
+ * @param {Object} request - Objeto de solicitud de Fastify. Se espera el token JWT en el header `Authorization`.
+ * @param {Object} reply - Objeto de respuesta de Fastify.
+ * @returns {Promise<void>}
+ * @author Daniel Barrera
+ */
 export const logout = async (request, reply) =>{
     if(true){
         return true;

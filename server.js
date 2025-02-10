@@ -76,8 +76,8 @@ fastify.register(fastifySwaggerUi, {
 
 
 fastify.register(routes,{prefix:"/api"})
-/*
 
+/*
 // aca inicia eel error
 fastify.register(fastifyRedis, {
     url: 'redis://localhost:6380',

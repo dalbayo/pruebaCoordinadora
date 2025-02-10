@@ -4,6 +4,14 @@ import {fastifyRedis} from "@fastify/redis";
 import {ESTADOS_VEHICULO} from "../utils/EstadoVehiculos.js";
 
 
+/**
+ * @description Obtiene todos los vehículos.
+ * @route GET /vehiculos
+ * @param {Object} request - Objeto de solicitud de Fastify.
+ * @param {Object} reply - Objeto de respuesta de Fastify.
+ * @returns {Promise<void>}
+ * @author Daniel Barrera
+ */
 
 
 export const getVehiculosAll = async (request, reply) =>{
@@ -46,6 +54,12 @@ export const getVehiculosAll = async (request, reply) =>{
 }
 
 
+/**
+ * @description Obtiene un vehículo por su ID si está activo.
+ * @param {number} id - El ID del vehículo.
+ * @returns {Promise<object|null>} - Un objeto con los datos del vehículo si existe y está activo, o null si no.
+ * @author Daniel Barrera
+ */
 export const getVehiculoByIdActivo = async (id) =>{
     try {
         console.error("inicia getAllUsusarios ")

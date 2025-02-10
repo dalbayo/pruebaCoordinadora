@@ -1141,3 +1141,76 @@ VALUES
 	(1099,'Úmbita',1,15),
 	(1100,'Útica',1,25);
 
+INSERT INTO perfil (nombre, descripcion)
+VALUES
+	('ADMIN','ADMINISTRADOR'),
+	('COORDINADOR','CORDINADOR'),
+	('DESPACHADOR','DESPACHADOR')  ;
+
+
+
+INSERT INTO tipo_mercancia (nombre, descripcion)
+VALUES
+	('Paquete','Paquete'),
+	('Documentos','Documentos')  ;
+
+
+
+
+INSERT INTO tipo_servicio (nombre, descripcion)
+VALUES
+	('Estándar','Envío estándar'),
+	('Express','Envío express')  ,
+	('Recogida','Recogida en tienda')  ,
+	('Internacional','Envío internacional')  ;
+
+
+INSERT INTO ruta (nombre, descripcion,id_ciudad_origen,id_ciudad_destino)
+  select CONCAT(c.nombre,'-',c2.nombre ), CONCAT('RUTA DE ',c.nombre,' A ',c2.nombre ), c.id, c2.id
+	 from ciudad c, ciudad c2  where c.id <>c2.id ;
+
+
+ -- solo se creo una ruta sencilla de bogota a sogamoso
+INSERT INTO ruta_principal
+(nombre, descripcion, id_ciudad_origen, id_ciudad_destino)
+VALUES('Bogotá D.C.-Sogamoso', 'Bogotá D.C. A Sogamoso', 107, 923);
+
+
+INSERT INTO ruta_secundaria
+(nombre, descripcion, id_ruta_principal, id_ruta, orden)
+VALUES('Bogotá D.C.-Duitama', 'Bogotá D.C.-Duitama', 1, 342792, 3),
+('Bogotá D.C.-Paipa', 'Bogotá D.C.-Paipa', 1, 725244, 2),
+('Bogotá D.C.-Tunja', 'Bogotá D.C.-Tunja', 1, 1145062, 1),
+('Bogotá D.C.-Sogamoso', 'Bogotá D.C.-Sogamoso', 1, 1046152, 4);
+
+
+
+ INSERT INTO vehiculo
+(placa, conductor, estado,peso)
+VALUES('AAA123', 'JUAN PEREZ', 1,200),
+('BBB123', 'LUIS MARTINEZ', 0,500),
+('CCC132', 'MARIO DUARTE', 1,50),
+('CCC132', 'AURELIANO BUEN DÍA ', 0,70);
+
+  INSERT INTO tipo_documento
+(id, nombre, descripcion)
+VALUES(1, 'CC', 'Cédula de ciudadanía'),
+(2, 'TI', 'Tarjeta de identidad'),
+(3, 'PAS', 'Pasaporte'),
+(4, 'TE', 'Tarjeta de extranjería'),
+(5, 'RC', 'Registro civil de nacimiento'),
+(6, 'NIT', 'Número de Identificación Tributaria'),
+(7, 'PPT', 'Permiso por Protección Temporal');
+
+ INSERT INTO persona (nombres,primer_apellido,segundo_apellido,correo,telefono,direccion,numero_documento,id_tipo_documento) VALUES
+('JUAN','MANRRIQUE','ADAME','MANRRIQUE.JUAN@gmail.com',315642268,'CL 25 45 45','91515516',1),
+('PEDRO','LOPEZ','ADAME','LOPEZ.PEDRO@gmail.com',3189846168,'CR 23 45 45','62144567',2),
+('JULIA','MORALES','ADAME','MORALES.JULIA@gmail.com',3154561215,'CL 3 45 45','7854692',1),
+('MARIA','ADAME','ADAME','ADAME.MARIA@gmail.com',3159857412,'CR 4 45 45','1245896',3),
+('MATEO','ESPEJO','ADAME','ESPEJO.MATEO@gmail.com',3159856321,'CL 55 45 45','1258746951',1),
+('LUISA','PULIDO','ADAME','PULIDO.LUISA@gmail.com',3124567985,'CR 77 45 45','124589654',4),
+('YENY','DIAS','ADAME','DIAS.YENY@gmail.com',3114785963,'CR 34 45 66','12398754',1),
+('EDWIN','PAEZ','ADAME','PAEZ.EDWIN@gmail.com',3197854236,'CL 67 45 45','63525445',4),
+('NATALIA','CELY','ADAME','CELY.NATALIA@gmail.com',3214587965,'CR 34 45 45','63589475',4),
+('ANDRES','LOPEZ','ADAME','LOPEZ.ANDRES@gmail.com',3134567895,'CL 23 45 45','89254212',3),
+('PEPE','DIAZ','ADAME','DIAZ.PEPE@gmail.com',3117895587,'CR 33 34 45','3158854544',3);
