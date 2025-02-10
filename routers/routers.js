@@ -24,6 +24,10 @@ import {
     getPersonasAll, updatePersona
 } from "../controlers/PersonaControler.js";
 import validatePersonaDto from "../validations/ValidatePersonaDto.js";
+import {getVehiculosAll} from "../controlers/VehiculoControler.js";
+import {createPlanillaViaje, getPlanillasViajeAll, getPlanillaViajeById} from "../controlers/PlanillaViajeControler.js";
+import validatePlanillaViajeDto from "../validations/ValidatePlanillaViajeDto.js";
+import {getRutaPrincipalById, getRutasPrincipalesAll} from "../controlers/RutasPrincipalesControler.js";
 
 
 const optsUsuarios = {
@@ -32,6 +36,10 @@ const optsUsuarios = {
 
 const optPersona = {
     preValidation: validatePersonaDto
+}
+
+const optPlanillaViaje = {
+    preValidation: validatePlanillaViajeDto
 }
 const optLogin = {
     preValidation: validateLoginDTO
@@ -73,7 +81,13 @@ const routers = async (fastify, options)=>{
     fastify.get("/tipoDocumentos/",optToken, getTipoDocumentosAll)
     fastify.get("/tipoMercancias/",optToken, getTipoMercanciaAll)
     fastify.get("/tipoServicios/",optToken, getTipoServicioAll)
+    fastify.get("/vehiculos/",optToken, getVehiculosAll)
     fastify.get("/rutas/:pagina",optToken, getRutasAll)
+    fastify.get("/rutas_principales/:pagina",optToken, getRutasPrincipalesAll)
+    fastify.get("/rutas_principales_completa/:id",optToken, getRutaPrincipalById)
+    fastify.get("/planilla_viaje/:pagina",optToken, getPlanillasViajeAll )
+    fastify.get("/planilla_viaje_detalle/:id",optToken, getPlanillaViajeById )
+    fastify.post("/planilla_viaje/",optPlanillaViaje, createPlanillaViaje)
 }
 
 export default routers

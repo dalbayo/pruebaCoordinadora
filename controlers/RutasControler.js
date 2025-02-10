@@ -18,14 +18,21 @@ export const getRutasAll = async (request, reply) =>{
         const pagina = Number(request.params.pagina)
         const paginado=50
         const paginaInicia = paginado*pagina
-        const paginaFinal = paginado*(pagina + 1)
 
         console.error("inicia getRutasAll ")
         let rutas  = [];
-
+        console.log('select r.id, r.nombre, r.descripcion, r.id_ciudad_origen as ciudadOrigen, c.nombre as nombreCiudadOrigen,  ' +
+            '  r.id_ciudad_destino as ciudadDestino, c2.nombre as nombreCiudadDestino   ' +
+            '  from ruta r   ' +
+            '    inner join ciudad c on c.id =r.id_ciudad_origen    ' +
+            '    inner join ciudad c2 on c2.id =r.id_ciudad_destino  limit  '+paginaInicia + ','+ paginado)
         const promise1 =  new Promise((resolve, reject)=>{
             connection.query(
-                'select * from ruta limit  '+paginaInicia + ','+ paginaFinal,
+                'select r.id, r.nombre, r.descripcion, r.id_ciudad_origen as ciudadOrigen, c.nombre as nombreCiudadOrigen,  ' +
+                '  r.id_ciudad_destino as ciudadDestino, c2.nombre as nombreCiudadDestino   ' +
+                '  from ruta r   ' +
+                '    inner join ciudad c on c.id =r.id_ciudad_origen    ' +
+                '    inner join ciudad c2 on c2.id =r.id_ciudad_destino  limit  '+paginaInicia + ','+ paginado,
                 async (error, results)=>{
                     // console.error(" inicia resul")
                     // console.log(results)

@@ -18,15 +18,14 @@ export const getCiudadesAll = async (request, reply) =>{
         const pagina = Number(request.params.pagina)
         let paginado=50
         const paginaInicia = paginado*pagina
-        const paginaFinal = paginado*(pagina + 1)
 
         console.error("inicia getRutasAll ")
         let rutas  = [];
 
         const promise1 =  new Promise((resolve, reject)=>{
             connection.query(
-                'select c.id, c.nombre , c.estado, d.id as idDepartamento, d.nombre as nombreDepartamento' +
-                ' from ciudad c inner join departamento d on d.id = c.id_departamento limit  '+paginaInicia + ','+ paginaFinal,
+                'select c.id, c.nombre , c.estado, d.id as idDepartamento, d.nombre as nombreDepartamento, c.creation_time' +
+                ' from ciudad c inner join departamento d on d.id = c.id_departamento limit  '+paginaInicia + ','+ paginado,
                 async (error, results)=>{
                     // console.error(" inicia resul")
                     // console.log(results)
