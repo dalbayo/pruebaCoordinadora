@@ -1,7 +1,8 @@
 import Fastify from "fastify"
 import {fastifyJwt} from "@fastify/jwt";
 import fastifyRedis from '@fastify/redis';
-
+import fastifySwagger from '@fastify/swagger';
+import fastifySwaggerUi from '@fastify/swagger-ui';
 import { connection } from "./database/db.js"
 import routes from "./routers/routers.js"
 import {getRutasAll} from "./controlers/RutasControler.js";
@@ -12,10 +13,69 @@ export const fastify = Fastify({
 })
 
 
-fastify.register(routes,{prefix:"/api"})
 fastify.register(fastifyJwt, {
     secret: process.env.JWT_PRIVATE_KEY
 })
+
+fastify.register(fastifySwagger, {
+    openapi: {
+        info: {
+            title: 'Prueba Coordinadora',
+            description: 'API Prueba Coordinadora Documentación',
+            version: '1.0.0'
+        },
+        servers: [
+            {
+                url: 'http://localhost:8000'
+            }
+        ],
+        host: 'localhost:8000',
+        schemes: ['http'],
+        consumes: ['application/json'],
+        produces: ['application/json'],
+        components: {
+            securitySchemes: {
+                bearerAuth: {
+                    type: 'http',
+                    scheme: 'bearer'
+                }
+            }
+        },
+        tags: [
+            {
+                name: 'Root',
+                description: 'Root endpoints'
+            }
+        ]
+    }
+});
+
+
+// Register @fastify/swagger-ui plugin.
+fastify.register(fastifySwaggerUi, {
+    routePrefix: '/docs',
+    uiConfig: {
+        docExpansion: 'full',
+        deepLinking: false
+    },
+    uiHooks: {
+        onRequest: function (_request, _reply, next) {
+            next();
+        },
+        preHandler: function (_request, _reply, next) {
+            next();
+        }
+    },
+    staticCSP: true,
+    transformStaticCSP: (header) => header,
+    transformSpecification: (swaggerObject) => {
+        return swaggerObject;
+    },
+    transformSpecificationClone: true
+});
+
+
+fastify.register(routes,{prefix:"/api"})
 /*
 
 // aca inicia eel error
@@ -61,6 +121,10 @@ const startServer = async () => {
     fastify.log.error(err)
     process.exit(1)
   }
-} 
- 
+}
+
+await fastify.ready()
+fastify.swagger()
+
+
 startServer()

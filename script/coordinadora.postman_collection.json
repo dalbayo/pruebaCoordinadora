@@ -1,0 +1,1493 @@
+{
+	"info": {
+		"_postman_id": "16d6d5d5-4fd1-4b55-8154-db1d8137dd39",
+		"name": "coordinadora",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1148816"
+	},
+	"item": [
+		{
+			"name": "maestros",
+			"item": [
+				{
+					"name": "getRutasAll",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjpbeyJpZCI6MSwibm9tYnJlcyI6IkRBTklFTCAiLCJwcmltZXJBcGVsbGxpZG8iOiJCQVJSRVJBIiwic2VndW5kb0FwZWxsaWRvIjoiQURBTUUiLCJjb3JyZW8iOiJkYW5pZWwuYmFycmVyYS5hZGFtZUBnbWFpbC5jb20iLCJpZF9wZXJmaWwiOjEsIm5vbWJyZVBlcmZpbCI6IkFETUlOIn1dLCJpYXQiOjE3MzkwNzA4OTB9.9aud4ywSeCiy3xVJf8dGBSHDimNE2-aa_L-RHvgnQJI",
+								"type": "text"
+							},
+							{
+								"key": "user",
+								"value": "device1",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "token",
+								"value": "6fe5e1cef7e31f759b33c08c78abc067393dfd6dbe01697a544fbffd90d02f0f",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "ApiKey",
+								"value": "0515d4f2-34b6-473a-9a0a-eefdd91f4f8f",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/rutas/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"rutas",
+								"5"
+							]
+						},
+						"description": "productos"
+					},
+					"response": []
+				},
+				{
+					"name": "getRutasPrincipalesAll",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjpbeyJpZCI6MSwibm9tYnJlcyI6IkRBTklFTCAiLCJwcmltZXJBcGVsbGxpZG8iOiJCQVJSRVJBIiwic2VndW5kb0FwZWxsaWRvIjoiQURBTUUiLCJjb3JyZW8iOiJkYW5pZWwuYmFycmVyYS5hZGFtZUBnbWFpbC5jb20iLCJpZF9wZXJmaWwiOjEsIm5vbWJyZVBlcmZpbCI6IkFETUlOIn1dLCJpYXQiOjE3MzkwNzA4OTB9.9aud4ywSeCiy3xVJf8dGBSHDimNE2-aa_L-RHvgnQJI",
+								"type": "text"
+							},
+							{
+								"key": "user",
+								"value": "device1",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "token",
+								"value": "6fe5e1cef7e31f759b33c08c78abc067393dfd6dbe01697a544fbffd90d02f0f",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "ApiKey",
+								"value": "0515d4f2-34b6-473a-9a0a-eefdd91f4f8f",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/rutas_principales/0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"rutas_principales",
+								"0"
+							]
+						},
+						"description": "productos"
+					},
+					"response": []
+				},
+				{
+					"name": "getRutasPrincipalesById",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjpbeyJpZCI6MSwibm9tYnJlcyI6IkRBTklFTCAiLCJwcmltZXJBcGVsbGxpZG8iOiJCQVJSRVJBIiwic2VndW5kb0FwZWxsaWRvIjoiQURBTUUiLCJjb3JyZW8iOiJkYW5pZWwuYmFycmVyYS5hZGFtZUBnbWFpbC5jb20iLCJpZF9wZXJmaWwiOjEsIm5vbWJyZVBlcmZpbCI6IkFETUlOIn1dLCJpYXQiOjE3MzkwNzA4OTB9.9aud4ywSeCiy3xVJf8dGBSHDimNE2-aa_L-RHvgnQJI",
+								"type": "text"
+							},
+							{
+								"key": "user",
+								"value": "device1",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "token",
+								"value": "6fe5e1cef7e31f759b33c08c78abc067393dfd6dbe01697a544fbffd90d02f0f",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "ApiKey",
+								"value": "0515d4f2-34b6-473a-9a0a-eefdd91f4f8f",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/rutas_principales_completa/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"rutas_principales_completa",
+								"1"
+							]
+						},
+						"description": "productos"
+					},
+					"response": []
+				},
+				{
+					"name": "getCiudades",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjpbeyJpZCI6MSwibm9tYnJlcyI6IkRBTklFTCAiLCJwcmltZXJBcGVsbGxpZG8iOiJCQVJSRVJBIiwic2VndW5kb0FwZWxsaWRvIjoiQURBTUUiLCJjb3JyZW8iOiJkYW5pZWwuYmFycmVyYS5hZGFtZUBnbWFpbC5jb20iLCJpZF9wZXJmaWwiOjEsIm5vbWJyZVBlcmZpbCI6IkFETUlOIn1dLCJpYXQiOjE3MzkwNzA4OTB9.9aud4ywSeCiy3xVJf8dGBSHDimNE2-aa_L-RHvgnQJI",
+								"type": "text"
+							},
+							{
+								"key": "user",
+								"value": "device1",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "token",
+								"value": "6fe5e1cef7e31f759b33c08c78abc067393dfd6dbe01697a544fbffd90d02f0f",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "ApiKey",
+								"value": "0515d4f2-34b6-473a-9a0a-eefdd91f4f8f",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/ciudades/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"ciudades",
+								"5"
+							]
+						},
+						"description": "productos"
+					},
+					"response": []
+				},
+				{
+					"name": "getPerfiles",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjpbeyJpZCI6MSwibm9tYnJlcyI6IkRBTklFTCAiLCJwcmltZXJBcGVsbGxpZG8iOiJCQVJSRVJBIiwic2VndW5kb0FwZWxsaWRvIjoiQURBTUUiLCJjb3JyZW8iOiJkYW5pZWwuYmFycmVyYS5hZGFtZUBnbWFpbC5jb20iLCJpZF9wZXJmaWwiOjEsIm5vbWJyZVBlcmZpbCI6IkFETUlOIn1dLCJpYXQiOjE3MzkwNzA4OTB9.9aud4ywSeCiy3xVJf8dGBSHDimNE2-aa_L-RHvgnQJI",
+								"type": "text"
+							},
+							{
+								"key": "user",
+								"value": "device1",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "token",
+								"value": "6fe5e1cef7e31f759b33c08c78abc067393dfd6dbe01697a544fbffd90d02f0f",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "ApiKey",
+								"value": "0515d4f2-34b6-473a-9a0a-eefdd91f4f8f",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/perfiles/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"perfiles",
+								""
+							]
+						},
+						"description": "productos"
+					},
+					"response": []
+				},
+				{
+					"name": "getTiposDocumento",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjpbeyJpZCI6MSwibm9tYnJlcyI6IkRBTklFTCAiLCJwcmltZXJBcGVsbGxpZG8iOiJCQVJSRVJBIiwic2VndW5kb0FwZWxsaWRvIjoiQURBTUUiLCJjb3JyZW8iOiJkYW5pZWwuYmFycmVyYS5hZGFtZUBnbWFpbC5jb20iLCJpZF9wZXJmaWwiOjEsIm5vbWJyZVBlcmZpbCI6IkFETUlOIn1dLCJpYXQiOjE3MzkwNzA4OTB9.9aud4ywSeCiy3xVJf8dGBSHDimNE2-aa_L-RHvgnQJI",
+								"type": "text"
+							},
+							{
+								"key": "user",
+								"value": "device1",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "token",
+								"value": "6fe5e1cef7e31f759b33c08c78abc067393dfd6dbe01697a544fbffd90d02f0f",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "ApiKey",
+								"value": "0515d4f2-34b6-473a-9a0a-eefdd91f4f8f",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/tipoDocumentos/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"tipoDocumentos",
+								""
+							]
+						},
+						"description": "productos"
+					},
+					"response": []
+				},
+				{
+					"name": "getTiposMercancia",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjpbeyJpZCI6MSwibm9tYnJlcyI6IkRBTklFTCAiLCJwcmltZXJBcGVsbGxpZG8iOiJCQVJSRVJBIiwic2VndW5kb0FwZWxsaWRvIjoiQURBTUUiLCJjb3JyZW8iOiJkYW5pZWwuYmFycmVyYS5hZGFtZUBnbWFpbC5jb20iLCJpZF9wZXJmaWwiOjEsIm5vbWJyZVBlcmZpbCI6IkFETUlOIn1dLCJpYXQiOjE3MzkwNzA4OTB9.9aud4ywSeCiy3xVJf8dGBSHDimNE2-aa_L-RHvgnQJI",
+								"type": "text"
+							},
+							{
+								"key": "user",
+								"value": "device1",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "token",
+								"value": "6fe5e1cef7e31f759b33c08c78abc067393dfd6dbe01697a544fbffd90d02f0f",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "ApiKey",
+								"value": "0515d4f2-34b6-473a-9a0a-eefdd91f4f8f",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/tipoMercancias/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"tipoMercancias",
+								""
+							]
+						},
+						"description": "productos"
+					},
+					"response": []
+				},
+				{
+					"name": "getTiposServicios",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjpbeyJpZCI6MSwibm9tYnJlcyI6IkRBTklFTCAiLCJwcmltZXJBcGVsbGxpZG8iOiJCQVJSRVJBIiwic2VndW5kb0FwZWxsaWRvIjoiQURBTUUiLCJjb3JyZW8iOiJkYW5pZWwuYmFycmVyYS5hZGFtZUBnbWFpbC5jb20iLCJpZF9wZXJmaWwiOjEsIm5vbWJyZVBlcmZpbCI6IkFETUlOIn1dLCJpYXQiOjE3MzkwNzA4OTB9.9aud4ywSeCiy3xVJf8dGBSHDimNE2-aa_L-RHvgnQJI",
+								"type": "text"
+							},
+							{
+								"key": "user",
+								"value": "device1",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "token",
+								"value": "6fe5e1cef7e31f759b33c08c78abc067393dfd6dbe01697a544fbffd90d02f0f",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "ApiKey",
+								"value": "0515d4f2-34b6-473a-9a0a-eefdd91f4f8f",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/tipoServicios/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"tipoServicios",
+								""
+							]
+						},
+						"description": "productos"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "usuario",
+			"item": [
+				{
+					"name": "crearUsuario",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "ApiKey",
+								"value": "0515d4f2-34b6-473a-9a0a-eefdd91f4f8f",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " { \r\n        \"nombres\":123,\r\n        \"primerApellido\":\"BARRERA22\",\r\n        \"segundoApellido\":\"ADAME2\",\r\n        \"correo\":\"daniel.barrera.adamegmail.com\",\r\n        \"clave\":\"123456789\",\r\n        \"perfil\":1\r\n    }            ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/usuarios/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"usuarios",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateUsuario",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "ApiKey",
+								"value": "0515d4f2-34b6-473a-9a0a-eefdd91f4f8f",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \"nombres\":\"DANIEL \",\r\n        \"primerApellido\":\"BARRERA\",\r\n        \"segundoApellido\":\"ADAME\",\r\n        \"correo\":\"daniel.barrera.adame@gmail.com\",\r\n        \"clave\":\"123456789\",\r\n        \"perfil\":1\r\n    }            ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/usuarios/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"usuarios",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUsusariosAll",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjpbeyJpZCI6MSwibm9tYnJlcyI6IkRBTklFTCAiLCJwcmltZXJBcGVsbGxpZG8iOiJCQVJSRVJBIiwic2VndW5kb0FwZWxsaWRvIjoiQURBTUUiLCJjb3JyZW8iOiJkYW5pZWwuYmFycmVyYS5hZGFtZUBnbWFpbC5jb20iLCJpZF9wZXJmaWwiOjEsIm5vbWJyZVBlcmZpbCI6IkFETUlOIn1dLCJpYXQiOjE3MzkwNzM2NDF9.fADZVhzs_GFuBIav2tlwbE2MYwcUGvsOLvFDRCkCJlcs",
+								"type": "text"
+							},
+							{
+								"key": "user",
+								"value": "device1",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "token",
+								"value": "6fe5e1cef7e31f759b33c08c78abc067393dfd6dbe01697a544fbffd90d02f0f",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "ApiKey",
+								"value": "0515d4f2-34b6-473a-9a0a-eefdd91f4f8f",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/usuarios/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"usuarios",
+								""
+							]
+						},
+						"description": "productos"
+					},
+					"response": []
+				},
+				{
+					"name": "usuarioById",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJDMDAwMDAwMDAwMSIsImVtYWlsIjoiYXNpc3RlbmNpYUBob3RtYWlsLmNvbSIsIm5hbWUiOiJBU0lTVEVOVEUgTUFTVEVSRklMRSAxMjMiLCJzdXJuYW1lIjoiVVNSX0dFTkVSQUwiLCJpYXQiOjE1NzQ4OTIxMjYsImV4cCI6MTU3NDkyMDkyNn0.i8GZ9XoAdkLSxn5BvBNmapjTyDRFP5sJHRnvtjjeNVM",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "user",
+								"value": "device1",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "token",
+								"value": "6fe5e1cef7e31f759b33c08c78abc067393dfd6dbe01697a544fbffd90d02f0f",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "ApiKey",
+								"value": "0515d4f2-34b6-473a-9a0a-eefdd91f4f8f",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/usuarios/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"usuarios",
+								"1"
+							]
+						},
+						"description": "productos"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "personas",
+			"item": [
+				{
+					"name": "crearPersona",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "ApiKey",
+								"value": "0515d4f2-34b6-473a-9a0a-eefdd91f4f8f",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " { \r\n        \"nombres\":\"DANIEL \",\r\n        \"primerApellido\":\"BARRERA\",\r\n        \"segundoApellido\":\"ADAME\",\r\n        \"correo\":\"daniel.barrera.adame@gmail.com\",\r\n        \"telefono\":\"123456789\",\r\n        \"direccion\":\"123456789\",\r\n        \"numeroDocumento\":\"91515516\",\r\n        \"tipoDocumento\":1\r\n    }            ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/personas/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"personas",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updatePersona",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "ApiKey",
+								"value": "0515d4f2-34b6-473a-9a0a-eefdd91f4f8f",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " { \r\n        \"nombres\":\"DANIEL ALFONSO \",\r\n        \"primerApellido\":\"BARRERA\",\r\n        \"segundoApellido\":\"ADAME\",\r\n        \"correo\":\"daniel.barrera.adame@gmail.com\",\r\n        \"telefono\":\"123456789\",\r\n        \"direccion\":\"123456789\",\r\n        \"numeroDocumento\":\"91515516\",\r\n        \"tipoDocumento\":1\r\n    }            ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/personas/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"personas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getPersonasAll",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjpbeyJpZCI6MSwibm9tYnJlcyI6IkRBTklFTCAiLCJwcmltZXJBcGVsbGxpZG8iOiJCQVJSRVJBIiwic2VndW5kb0FwZWxsaWRvIjoiQURBTUUiLCJjb3JyZW8iOiJkYW5pZWwuYmFycmVyYS5hZGFtZUBnbWFpbC5jb20iLCJpZF9wZXJmaWwiOjEsIm5vbWJyZVBlcmZpbCI6IkFETUlOIn1dLCJpYXQiOjE3MzkwNzM2NDF9.fADZVhzs_GFuBIav2tlwbE2MYwcUGvsOLvFDRCkCJlcs",
+								"type": "text"
+							},
+							{
+								"key": "user",
+								"value": "device1",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "token",
+								"value": "6fe5e1cef7e31f759b33c08c78abc067393dfd6dbe01697a544fbffd90d02f0f",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "ApiKey",
+								"value": "0515d4f2-34b6-473a-9a0a-eefdd91f4f8f",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/personas/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"personas",
+								""
+							]
+						},
+						"description": "productos"
+					},
+					"response": []
+				},
+				{
+					"name": "personaById",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJDMDAwMDAwMDAwMSIsImVtYWlsIjoiYXNpc3RlbmNpYUBob3RtYWlsLmNvbSIsIm5hbWUiOiJBU0lTVEVOVEUgTUFTVEVSRklMRSAxMjMiLCJzdXJuYW1lIjoiVVNSX0dFTkVSQUwiLCJpYXQiOjE1NzQ4OTIxMjYsImV4cCI6MTU3NDkyMDkyNn0.i8GZ9XoAdkLSxn5BvBNmapjTyDRFP5sJHRnvtjjeNVM",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "user",
+								"value": "device1",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "token",
+								"value": "6fe5e1cef7e31f759b33c08c78abc067393dfd6dbe01697a544fbffd90d02f0f",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "ApiKey",
+								"value": "0515d4f2-34b6-473a-9a0a-eefdd91f4f8f",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/personas/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"personas",
+								"1"
+							]
+						},
+						"description": "productos"
+					},
+					"response": []
+				},
+				{
+					"name": "personaByDocumento",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJDMDAwMDAwMDAwMSIsImVtYWlsIjoiYXNpc3RlbmNpYUBob3RtYWlsLmNvbSIsIm5hbWUiOiJBU0lTVEVOVEUgTUFTVEVSRklMRSAxMjMiLCJzdXJuYW1lIjoiVVNSX0dFTkVSQUwiLCJpYXQiOjE1NzQ4OTIxMjYsImV4cCI6MTU3NDkyMDkyNn0.i8GZ9XoAdkLSxn5BvBNmapjTyDRFP5sJHRnvtjjeNVM",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "user",
+								"value": "device1",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "token",
+								"value": "6fe5e1cef7e31f759b33c08c78abc067393dfd6dbe01697a544fbffd90d02f0f",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "ApiKey",
+								"value": "0515d4f2-34b6-473a-9a0a-eefdd91f4f8f",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/personas/1/7854692",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"personas",
+								"1",
+								"7854692"
+							]
+						},
+						"description": "productos"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "planillaViaje",
+			"item": [
+				{
+					"name": "crearPlanillaViaje",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "ApiKey",
+								"value": "0515d4f2-34b6-473a-9a0a-eefdd91f4f8f",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " { \r\n        \"peso\":0,\r\n        \"valorViaje\":0.0,\r\n        \"cantidadEncomiendas\":0,\r\n        \"notas\":\"sin notas\",\r\n        \"fechaSalida\":\"2025-02-08\",\r\n        \"fechaFinEstimada\":\"2025-02-17\",\r\n        \"rutaPrincipal\":1,\r\n        \"vehiculo\":1\r\n    }            ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/planilla_viaje/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"planilla_viaje",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getPlanillasViajes",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjpbeyJpZCI6MSwibm9tYnJlcyI6IkRBTklFTCAiLCJwcmltZXJBcGVsbGxpZG8iOiJCQVJSRVJBIiwic2VndW5kb0FwZWxsaWRvIjoiQURBTUUiLCJjb3JyZW8iOiJkYW5pZWwuYmFycmVyYS5hZGFtZUBnbWFpbC5jb20iLCJpZF9wZXJmaWwiOjEsIm5vbWJyZVBlcmZpbCI6IkFETUlOIn1dLCJpYXQiOjE3MzkwNzM2NDF9.fADZVhzs_GFuBIav2tlwbE2MYwcUGvsOLvFDRCkCJlcs",
+								"type": "text"
+							},
+							{
+								"key": "user",
+								"value": "device1",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "token",
+								"value": "6fe5e1cef7e31f759b33c08c78abc067393dfd6dbe01697a544fbffd90d02f0f",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "ApiKey",
+								"value": "0515d4f2-34b6-473a-9a0a-eefdd91f4f8f",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/planilla_viaje/0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"planilla_viaje",
+								"0"
+							]
+						},
+						"description": "productos"
+					},
+					"response": []
+				},
+				{
+					"name": "getPlanillaViajeById",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJDMDAwMDAwMDAwMSIsImVtYWlsIjoiYXNpc3RlbmNpYUBob3RtYWlsLmNvbSIsIm5hbWUiOiJBU0lTVEVOVEUgTUFTVEVSRklMRSAxMjMiLCJzdXJuYW1lIjoiVVNSX0dFTkVSQUwiLCJpYXQiOjE1NzQ4OTIxMjYsImV4cCI6MTU3NDkyMDkyNn0.i8GZ9XoAdkLSxn5BvBNmapjTyDRFP5sJHRnvtjjeNVM",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "user",
+								"value": "device1",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "token",
+								"value": "6fe5e1cef7e31f759b33c08c78abc067393dfd6dbe01697a544fbffd90d02f0f",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "ApiKey",
+								"value": "0515d4f2-34b6-473a-9a0a-eefdd91f4f8f",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/planilla_viaje/0/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"planilla_viaje",
+								"0",
+								"1"
+							]
+						},
+						"description": "productos"
+					},
+					"response": []
+				},
+				{
+					"name": "despacharPlanilla",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJDMDAwMDAwMDAwMSIsImVtYWlsIjoiYXNpc3RlbmNpYUBob3RtYWlsLmNvbSIsIm5hbWUiOiJBU0lTVEVOVEUgTUFTVEVSRklMRSAxMjMiLCJzdXJuYW1lIjoiVVNSX0dFTkVSQUwiLCJpYXQiOjE1NzQ4OTIxMjYsImV4cCI6MTU3NDkyMDkyNn0.i8GZ9XoAdkLSxn5BvBNmapjTyDRFP5sJHRnvtjjeNVM",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "user",
+								"value": "device1",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "token",
+								"value": "6fe5e1cef7e31f759b33c08c78abc067393dfd6dbe01697a544fbffd90d02f0f",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "ApiKey",
+								"value": "0515d4f2-34b6-473a-9a0a-eefdd91f4f8f",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/planilla_viaje_despachar/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"planilla_viaje_despachar",
+								"1"
+							]
+						},
+						"description": "productos"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "encomiendas",
+			"item": [
+				{
+					"name": "createEncomienda",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "ApiKey",
+								"value": "0515d4f2-34b6-473a-9a0a-eefdd91f4f8f",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " { \r\n        \"peso\": 1, \r\n    \"dimensiones\": \" largo \", \r\n    \"telefono\": \"3154897894\", \r\n    \"valorDeclarado\": 50.000, \r\n    \"valorEncomienda\": 15.000, \r\n    \"cantidadArticulos\": 1,\r\n    \"direccion\": \"cl 5 5 45\", \r\n    \"coordenadas\": \"5.807685, -73.030232\", \r\n    \"notas\": \" ninguna\", \r\n    \"ciudadOrigen\": 107, \r\n    \"ciudadDestino\": 923, \r\n    \"remitente\": 1, \r\n    \"destinatario\": 15, \r\n    \"tipoMercancia\": 1, \r\n    \"tipoServicio\": 1\r\n    }            ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/encomiendas/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"encomiendas",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "consultaInforme",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "ApiKey",
+								"value": "0515d4f2-34b6-473a-9a0a-eefdd91f4f8f",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {  \r\n        \"fechaInicio\":\"2025-02-08\",\r\n        \"fechaFin\":\"2025-02-17\",\r\n        \"estado\" : 1,\r\n        \"vehiculo\": 1,\r\n        \"pagina\": 0\r\n    }            ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/consultaInforme/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"consultaInforme",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "consultaInformeMetricas",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "ApiKey",
+								"value": "0515d4f2-34b6-473a-9a0a-eefdd91f4f8f",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {  \r\n        \"fechaInicio\":\"2022-02-08\",\r\n        \"fechaFin\":\"2025-02-17\" \r\n    }            ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/consultaInformeMetricas/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"consultaInformeMetricas",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getPlanillasViajes",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjpbeyJpZCI6MSwibm9tYnJlcyI6IkRBTklFTCAiLCJwcmltZXJBcGVsbGxpZG8iOiJCQVJSRVJBIiwic2VndW5kb0FwZWxsaWRvIjoiQURBTUUiLCJjb3JyZW8iOiJkYW5pZWwuYmFycmVyYS5hZGFtZUBnbWFpbC5jb20iLCJpZF9wZXJmaWwiOjEsIm5vbWJyZVBlcmZpbCI6IkFETUlOIn1dLCJpYXQiOjE3MzkwNzM2NDF9.fADZVhzs_GFuBIav2tlwbE2MYwcUGvsOLvFDRCkCJlcs",
+								"type": "text"
+							},
+							{
+								"key": "user",
+								"value": "device1",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "token",
+								"value": "6fe5e1cef7e31f759b33c08c78abc067393dfd6dbe01697a544fbffd90d02f0f",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "ApiKey",
+								"value": "0515d4f2-34b6-473a-9a0a-eefdd91f4f8f",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/planilla_viaje/0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"planilla_viaje",
+								"0"
+							]
+						},
+						"description": "productos"
+					},
+					"response": []
+				},
+				{
+					"name": "getEncomiendaById",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJDMDAwMDAwMDAwMSIsImVtYWlsIjoiYXNpc3RlbmNpYUBob3RtYWlsLmNvbSIsIm5hbWUiOiJBU0lTVEVOVEUgTUFTVEVSRklMRSAxMjMiLCJzdXJuYW1lIjoiVVNSX0dFTkVSQUwiLCJpYXQiOjE1NzQ4OTIxMjYsImV4cCI6MTU3NDkyMDkyNn0.i8GZ9XoAdkLSxn5BvBNmapjTyDRFP5sJHRnvtjjeNVM",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "user",
+								"value": "device1",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "token",
+								"value": "6fe5e1cef7e31f759b33c08c78abc067393dfd6dbe01697a544fbffd90d02f0f",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "ApiKey",
+								"value": "0515d4f2-34b6-473a-9a0a-eefdd91f4f8f",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/encomiendas/7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"encomiendas",
+								"7"
+							]
+						},
+						"description": "productos"
+					},
+					"response": []
+				},
+				{
+					"name": "entregarEncomienda",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJDMDAwMDAwMDAwMSIsImVtYWlsIjoiYXNpc3RlbmNpYUBob3RtYWlsLmNvbSIsIm5hbWUiOiJBU0lTVEVOVEUgTUFTVEVSRklMRSAxMjMiLCJzdXJuYW1lIjoiVVNSX0dFTkVSQUwiLCJpYXQiOjE1NzQ4OTIxMjYsImV4cCI6MTU3NDkyMDkyNn0.i8GZ9XoAdkLSxn5BvBNmapjTyDRFP5sJHRnvtjjeNVM",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "user",
+								"value": "device1",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "token",
+								"value": "6fe5e1cef7e31f759b33c08c78abc067393dfd6dbe01697a544fbffd90d02f0f",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "ApiKey",
+								"value": "0515d4f2-34b6-473a-9a0a-eefdd91f4f8f",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/encomienda_entregar/7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"encomienda_entregar",
+								"7"
+							]
+						},
+						"description": "productos"
+					},
+					"response": []
+				},
+				{
+					"name": "asignarEncomienda",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJDMDAwMDAwMDAwMSIsImVtYWlsIjoiYXNpc3RlbmNpYUBob3RtYWlsLmNvbSIsIm5hbWUiOiJBU0lTVEVOVEUgTUFTVEVSRklMRSAxMjMiLCJzdXJuYW1lIjoiVVNSX0dFTkVSQUwiLCJpYXQiOjE1NzQ4OTIxMjYsImV4cCI6MTU3NDkyMDkyNn0.i8GZ9XoAdkLSxn5BvBNmapjTyDRFP5sJHRnvtjjeNVM",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "user",
+								"value": "device1",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "token",
+								"value": "6fe5e1cef7e31f759b33c08c78abc067393dfd6dbe01697a544fbffd90d02f0f",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "ApiKey",
+								"value": "0515d4f2-34b6-473a-9a0a-eefdd91f4f8f",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/encomiendas_asignar/7/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"encomiendas_asignar",
+								"7",
+								"1"
+							]
+						},
+						"description": "productos"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "ApiKey",
+						"value": "0515d4f2-34b6-473a-9a0a-eefdd91f4f8f",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " { \r\n        \"correo\":\"daniel.barrera.adame@gmail.com\",\r\n        \"clave\":\"123456789\"\r\n    }            ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/login/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

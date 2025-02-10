@@ -9,15 +9,15 @@ export const ESTADOS_PLANILLA={
     "message": "Planilla de Viaje Cancelada"
   },
   "EN_RUTA": {
-    "code": 0,
+    "code": 2,
     "message": " Planilla de Viaje en Ruta"
   },
   "FINALIZADA": {
-    "code": 0,
+    "code": 3,
     "message": " Planilla de Viaje Finalizada"
   },
   "ACCIDENTE_FORTUITO": {
-    "code": 0,
+    "code": 4,
     "message": " Planilla de Viaje Cancelada por Accidente fortuito"
   }
 }

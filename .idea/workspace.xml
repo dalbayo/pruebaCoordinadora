@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5d5b966a-6439-4ae3-bfe2-21bd7b024869" name="Changes" comment="" />
+    <list default="true" id="5d5b966a-6439-4ae3-bfe2-21bd7b024869" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/controlers/PlanillaViajeControler.js" beforeDir="false" afterPath="$PROJECT_DIR$/controlers/PlanillaViajeControler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routers/routers.js" beforeDir="false" afterPath="$PROJECT_DIR$/routers/routers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/EstadoPlanillaViaje.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/EstadoPlanillaViaje.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,6 +44,7 @@
       <workItem from="1739120314964" duration="658000" />
       <workItem from="1739132177952" duration="724000" />
       <workItem from="1739152337551" duration="181000" />
+      <workItem from="1739188099804" duration="31000" />
     </task>
     <servers />
   </component>

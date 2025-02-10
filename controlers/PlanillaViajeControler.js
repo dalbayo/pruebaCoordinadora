@@ -146,17 +146,17 @@ export const createPlanillaViaje = async (request, reply) =>{
 
         const promises =[promise1];
         const result = await Promise.all(promises);
-         if(respuesta[0][0].respuestaOut.includes("Error:")){
-             let errFormat = ERRORES_HTTP["500"];
-             errFormat.description = errFormat.description + respuesta[0][0].respuestaOut
-             reply.status(errFormat.code).send( {error:errFormat,response:null});
-         }else  if(respuesta[0][0].respuestaOut.includes("Planilla de viaje creada exitosamente.")){
-             reply.status(ERRORES_HTTP["200"].code).send( {error:null,response:respuesta[0][0].respuestaOut});
-         }else {
-             let errFormat = ERRORES_HTTP["500"];
-             errFormat.description = errFormat.description + JSON.stringify(respuesta)
-             reply.status(ERRORES_HTTP["500"].code).send( {error:errFormat,response:null});
-         }
+        if(respuesta[0][0].respuestaOut.includes("Error:")){
+            let errFormat = ERRORES_HTTP["500"];
+            errFormat.description = errFormat.description + respuesta[0][0].respuestaOut
+            reply.status(errFormat.code).send( {error:errFormat,response:null});
+        }else  if(respuesta[0][0].respuestaOut.includes("Planilla de viaje creada exitosamente.")){
+            reply.status(ERRORES_HTTP["200"].code).send( {error:null,response:respuesta[0][0].respuestaOut});
+        }else {
+            let errFormat = ERRORES_HTTP["500"];
+            errFormat.description = errFormat.description + JSON.stringify(respuesta)
+            reply.status(ERRORES_HTTP["500"].code).send( {error:errFormat,response:null});
+        }
     } catch (err) {
         console.error("error")
         console.error(err)
@@ -168,158 +168,53 @@ export const createPlanillaViaje = async (request, reply) =>{
 
 
 
-export const updatePlanillaViaje = async (request, reply) =>{
+
+export const despacharPlanillaDeViaje = async (request, reply) =>{
     try {
-        console.log(request.body)
-        let usuarios  = [];
-        //const id = Number(request.params.id)
-        console.error("inicia updateUsuario ")
+
+        console.error("inicia despacharPlanillaDeViaje ")
         const id = Number(request.params.id)
 
-        console.log(id)
-        // valida existencia del usuario
-        let usuario;
+        let respuesta;
 
-        const promiseV =  new Promise((resolve, reject)=>{
-            connection.query(
-                'SELECT * FROM planillaViaje WHERE id = ?   limit 1 ', [id],async (error, results)=>{
-                    // console.error(" inicia resul")
-                    // console.log(results)
-                    if(error){
-                        console.error("inicia err")
-                        console.log(error);
-                    }
-                    usuario = results;
-                    return resolve(results);
 
-                    // reply.status(200).send(usuarios)
-                })
-        });
 
-        const promisesv =[promiseV];
-        const resultv = await Promise.all(promisesv);
-        console.log(usuario)
-        if(!usuario){
-           // reply.status(500).send({error:'El usuario no es valido'})
-            let errFormat = ERRORES_HTTP["500"];
-            errFormat.description = errFormat.description + "La planillaViaje no existe"
-            reply.status(ERRORES_HTTP["500"].code).send( {error:errFormat,response:null});
-        }
-        //fin valida existencia del usuario
-
-        /*console.log("clave")
-        console.log(request.body)*/
-        /* console.log(clave)*/
         const promise1 =  new Promise((resolve, reject)=>{
-            connection.query(
-                "UPDATE coordinadora.planillaViaje " +
-                " SET nombres=?, primer_apellido=?, segundo_apellido=?, correo=?, telefono=?, direccion=?, numero_documento=?, id_tipo_documento=?  " +
-                " WHERE id=? ; " , [request.body.nombres,request.body.primerApellido,request.body.segundoApellido,request.body.correo,request.body.telefono, request.body.direccion,
-                    request.body.numeroDocumento, request.body.tipoDocumento, id],async (error, results)=>{
-                    console.log(" inicia resul")
-                    console.log(results)
-                    console.log(" medio resul")
-                    console.log(error)
-                    if(error){
-                        console.error("inicia err")
-                        console.log(error);
-                    }
-                    usuarios = results;
-                    return resolve(results);
+            try{
 
-                    // reply.status(200).send(usuarios)
-                })
+                connection.query(
+                    " CALL coordinadora.despacharViaje(? , @resultado) ;  ",
+                    [id],async (error, results,fields)=>{
+
+                        if(error){
+                            console.error("inicia err")
+                            console.log(error);
+                        }
+                        respuesta = results;
+                        return resolve(results);
+
+                        // reply.status(200).send(planillasViajes)
+                    })
+            }catch (errerr){
+
+                console.error("errerrerrerr")
+                console.error(err)
+            }
         });
 
         const promises =[promise1];
         const result = await Promise.all(promises);
-        /* console.log(result)*/
-        if(usuarios){
-           // reply.status(ERRORES_HTTP["200"].code).send( {error:null,response:usuarios[0]});
-            reply.status(ERRORES_HTTP["200"].code).send( {error:null,response:"Los datos de la planillaViaje se han actualizado con exito"});
-        }
-        //reply.status(500).send({error:'error interno'})
-        reply.status(ERRORES_HTTP["200"].code).send( {error:null,response:"Los datos de la planillaViaje se han actualizado con exito"});
-    } catch (err) {
-        console.error("error")
-        console.error(err)
-        let errFormat = ERRORES_HTTP["500"];
-        errFormat.description = errFormat.description +err.message
-        reply.status(ERRORES_HTTP["500"].code).send( {error:errFormat,response:null});
-    }
-}
-
-
-
-
-export const deletePlanillaViaje = async (request, reply) =>{
-    try {
-        console.log(request.body)
-        let usuarios  = [];
-        //const id = Number(request.params.id)
-        console.error("inicia updateUsuario ")
-        const id = Number(request.params.id)
-        console.log("inicia validacion")
-
-        console.log(id)
-        // valida existencia del usuario
-        let usuario;
-
-        const promiseV =  new Promise((resolve, reject)=>{
-            connection.query(
-                'SELECT * FROM planillaViaje WHERE id = ?   limit 1 ', [id],async (error, results)=>{
-                    // console.error(" inicia resul")
-                    // console.log(results)
-                    if(error){
-                        console.error("inicia err")
-                        console.log(error);
-                    }
-                    usuario = results;
-                    return resolve(results);
-
-                    // reply.status(200).send(usuarios)
-                })
-        });
-
-        const promisesv =[promiseV];
-        const resultv = await Promise.all(promisesv);
-        console.log(usuario)
-        if(!usuario){
+        if(respuesta[0][0].respuestaOut.includes("Error:")){
             let errFormat = ERRORES_HTTP["500"];
-            errFormat.description = errFormat.description + "La planillaViaje no existe."
+            errFormat.description = errFormat.description + respuesta[0][0].respuestaOut
+            reply.status(errFormat.code).send( {error:errFormat,response:null});
+        }else  if(respuesta[0][0].respuestaOut.includes("La planilla de viaje se encuentra en ruta")){
+            reply.status(ERRORES_HTTP["200"].code).send( {error:null,response:respuesta[0][0].respuestaOut});
+        }else {
+            let errFormat = ERRORES_HTTP["500"];
+            errFormat.description = errFormat.description + JSON.stringify(respuesta)
             reply.status(ERRORES_HTTP["500"].code).send( {error:errFormat,response:null});
         }
-        //fin valida existencia del usuario
-
-        /*console.log("clave")
-        console.log(request.body)*/
-        /* console.log(clave)*/
-        const promise1 =  new Promise((resolve, reject)=>{
-            connection.query(
-                "DELETE FROM planillaViaje WHERE id=?;" , [ id],async (error, results)=>{
-                    console.log(" inicia resul")
-                    console.log(results)
-                    console.log(" medio resul")
-                    console.log(error)
-                    if(error){
-                        console.error("inicia err")
-                        console.log(error);
-                    }
-                    usuarios = results;
-                    return resolve(results);
-
-                    // reply.status(200).send(usuarios)
-                })
-        });
-
-        const promises =[promise1];
-        const result = await Promise.all(promises);
-        /* console.log(result)*/
-        if(usuarios){
-            reply.status(ERRORES_HTTP["200"].code).send( {error:null,response:usuarios[0]});
-        }
-        //reply.status(500).send({error:'error interno'})
-        reply.status(ERRORES_HTTP["200"].code).send( {error:null,response:"La planillaViaje ha sido borrada exitosamente"});
     } catch (err) {
         console.error("error")
         console.error(err)
@@ -328,3 +223,4 @@ export const deletePlanillaViaje = async (request, reply) =>{
         reply.status(ERRORES_HTTP["500"].code).send( {error:errFormat,response:null});
     }
 }
+

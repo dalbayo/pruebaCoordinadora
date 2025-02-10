@@ -10,8 +10,6 @@ import validateLoginDTO from "../validations/ValidateLoginDto.js";
 import {loginUsuario, logout} from "../controlers/LoginControler.js";
 import validateToken from "../validations/ValidateToken.js";
 import {getRutasAll} from "../controlers/RutasControler.js";
-import {fastify} from "../server.js";
-import {ERRORES_HTTP} from "../utils/Errores.js";
 import {getCiudadesAll} from "../controlers/CiudadControler.js";
 import {getPerfilesAll} from "../controlers/PerfilControler.js";
 import {getTipoDocumentosAll} from "../controlers/TipoDocumentoControler.js";
@@ -25,9 +23,23 @@ import {
 } from "../controlers/PersonaControler.js";
 import validatePersonaDto from "../validations/ValidatePersonaDto.js";
 import {getVehiculosAll} from "../controlers/VehiculoControler.js";
-import {createPlanillaViaje, getPlanillasViajeAll, getPlanillaViajeById} from "../controlers/PlanillaViajeControler.js";
+import {
+    createPlanillaViaje,
+    despacharPlanillaDeViaje,
+    getPlanillasViajeAll,
+    getPlanillaViajeById
+} from "../controlers/PlanillaViajeControler.js";
 import validatePlanillaViajeDto from "../validations/ValidatePlanillaViajeDto.js";
 import {getRutaPrincipalById, getRutasPrincipalesAll} from "../controlers/RutasPrincipalesControler.js";
+import {
+    asignarEncomienda, consultaInformeEncomienda, consultaInformeMetricas,
+    crearEncomieda,
+    entregarEncomienda,
+    getEncomiendaById
+} from "../controlers/EncomiendaControler.js";
+import validateEncomiendaDto from "../validations/ValidateEncomiendaDto.js";
+import validateConsultaInformeMetricasDto from "../validations/ValidateConsultaInformeMetricasDto.js";
+import validateConsultaInformeEncomiendasDto from "../validations/ValidateConsultaInformeEncomiendasDto.js";
 
 
 const optsUsuarios = {
@@ -40,6 +52,17 @@ const optPersona = {
 
 const optPlanillaViaje = {
     preValidation: validatePlanillaViajeDto
+}
+
+const optEncomienda = {
+    preValidation: validateEncomiendaDto
+}
+
+const optEncomiendaInforme = {
+    preValidation: validateConsultaInformeEncomiendasDto
+}
+const optEncomiendaInformeMetricas = {
+    preValidation: validateConsultaInformeMetricasDto
 }
 const optLogin = {
     preValidation: validateLoginDTO
@@ -88,6 +111,13 @@ const routers = async (fastify, options)=>{
     fastify.get("/planilla_viaje/:pagina",optToken, getPlanillasViajeAll )
     fastify.get("/planilla_viaje_detalle/:id",optToken, getPlanillaViajeById )
     fastify.post("/planilla_viaje/",optPlanillaViaje, createPlanillaViaje)
+    fastify.get("/encomiendas/:id",optToken, getEncomiendaById  )
+    fastify.post("/encomiendas/",optEncomienda, crearEncomieda)
+    fastify.get("/encomiendas_asignar/:idEncomienda/:idPlanilla",optToken, asignarEncomienda  )
+    fastify.get("/planilla_viaje_despachar/:id",optToken, despacharPlanillaDeViaje )
+    fastify.get("/encomienda_entregar/:id",optToken, entregarEncomienda )
+    fastify.post("/consultaInforme/",optEncomiendaInforme, consultaInformeEncomienda)
+    fastify.post("/consultaInformeMetricas/",optEncomiendaInformeMetricas, consultaInformeMetricas)
 }
 
 export default routers

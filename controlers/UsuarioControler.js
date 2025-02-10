@@ -2,7 +2,69 @@ import { connection } from "../database/db.js";
 import {ERRORES_HTTP} from "../utils/Errores.js";
 
 
-
+/**
+ * @swagger
+ * /usuarios:
+ *   get:
+ *     summary: Obtiene la lista de todos los usuarios con su perfil asociado.
+ *     description: Retorna un listado de usuarios junto con su información de perfil.
+ *     tags:
+ *       - Usuarios
+ *     responses:
+ *       200:
+ *         description: Lista de usuarios obtenida exitosamente.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: "null"
+ *                 response:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       id:
+ *                         type: integer
+ *                         example: 1
+ *                       nombres:
+ *                         type: string
+ *                         example: "Juan"
+ *                       primerApelllido:
+ *                         type: string
+ *                         example: "Pérez"
+ *                       segundoApellido:
+ *                         type: string
+ *                         example: "Gómez"
+ *                       correo:
+ *                         type: string
+ *                         example: "juan.perez@example.com"
+ *                       id_perfil:
+ *                         type: integer
+ *                         example: 2
+ *                       nombrePerfil:
+ *                         type: string
+ *                         example: "Administrador"
+ *       500:
+ *         description: Error interno del servidor.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: object
+ *                   properties:
+ *                     code:
+ *                       type: integer
+ *                       example: 500
+ *                     description:
+ *                       type: string
+ *                       example: "Error interno del servidor: detalle del error"
+ *                 response:
+ *                   type: "null"
+ */
 export const getUsusariosAll = async (request, reply) =>{
     try {
         console.error("inicia getAllUsusarios ")
