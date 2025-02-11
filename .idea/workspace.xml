@@ -2,24 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5d5b966a-6439-4ae3-bfe2-21bd7b024869" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/EncomiendaController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/EncomiendaController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/LoginController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/LoginController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/PerfilController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/PerfilController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/RutasController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/RutasController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/RutasPrincipalesController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/RutasPrincipalesController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/UsuarioController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/UsuarioController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/script/coordinadora.postman_collection.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/script/coordinadora.postman_collection.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/EncomiendaService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/EncomiendaService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/LoginService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/LoginService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/PersonaService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/PersonaService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/PlanillaViajeService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/PlanillaViajeService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/RutasPrincipalesService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/RutasPrincipalesService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/RutasService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/RutasService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/UsuarioService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/UsuarioService.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,7 +60,7 @@
       <workItem from="1739226582179" duration="168000" />
       <workItem from="1739227083344" duration="1019000" />
       <workItem from="1739228126603" duration="13469000" />
-      <workItem from="1739242764848" duration="15792000" />
+      <workItem from="1739242764848" duration="16846000" />
     </task>
     <servers />
   </component>

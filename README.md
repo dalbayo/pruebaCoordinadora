@@ -39,21 +39,47 @@ asegurando seguridad, eficiencia y escalabilidad.
 2.  Accede al directorio del proyecto:
 
     ```bash
-    cd nombre-del-proyecto
+    cd pruebaCoordinadora
     ```
 
-3.  Copia el archivo `.env.example` a `.env` y configura las variables de entorno necesarias, como las credenciales de la base de datos y la configuración de Redis.
+3.  Copia el archivo `.env.example` a `.env` y configura las variables de entorno necesarias, 
+   como las credenciales de la base de datos y la configuración de Redis.
 
-4.  Construye y levanta los contenedores:
+   4.  Despliegue manual del proyecto
 
-    ```bash
-    docker-compose up -d
-    ```
+       DEBIDO A QUE NO SE PUDO FINALIZAR LA VALIDACIÓN DE DOCKER SE DEBE TENER 
+       INSTALADO MYSQL CON EL FIN DE EJECUTAR LOS 
+       SCRIPT bd.sql en primer lugar y despues data.sql los cuales se encuentran
+       en la ruta pruebaCoordinadora\src\script 
+       se debe modificar el usuario y la clave del usuario de bd 
+       Se debe tener instalado un contenedor para redis, 
+       auqnue esta parte no se pudo probar el ejemplo basico de uso de redis 
+       esta en el archivo pruebaCoordinadora\src\controllers\RutasController.js
+    
+           /*fastifyRedis.get("getAllRutas/"+pagina, (err, val) => { 
+               reply.status(ERRORES_HTTP["200"].code).send( val)
+           })*/
+
+
+           let rutas = await getRutasAllService(pagina)
+           /*fastifyRedis.set("getAllRutas/"+pagina,{error:null,response:rutas}, (err) => {
+               reply.status(ERRORES_HTTP["200"].code).send( {error:null,response:rutas});
+           })*/
+
+        Para validar Swagger solo debe abrir la url http://localhost:8000/docs donde podra ver la información de Swager
+
+5.  Construye y levanta los contenedores:
+       ```bash
+       docker-compose up -d
+       ```
 
 ## Uso
 
-*   La aplicación estará disponible en `http://localhost:puerto-de-la-aplicacion`.
-*   La documentación de la API Swagger estará disponible en `http://localhost:puerto-de-la-aplicacion/api-docs`.
+*   La aplicación estará disponible en `http://localhost:8000/`.
+*   La documentación de la API Swagger estará disponible en `http://localhost:8000/docs`.
+*   Para consumir las apis solo debe abrir en Postman el archivo
+*   coordinadora.postman_collection.json en la ruta en la ruta pruebaCoordinadora\src\script
+
 
 ## Endpoints de la API
 
@@ -61,7 +87,8 @@ Lista de los endpoints principales de la API y su descripción.
 
 ## Contribución
 
-Si deseas contribuir a este proyecto, por favor, abre un "issue" o envía un "pull request".
+Si deseas contribuir a este proyecto, por favor, abre un "issue"
+o envía un "pull request".
 
 ## Licencia
 
@@ -69,12 +96,20 @@ Si deseas contribuir a este proyecto, por favor, abre un "issue" o envía un "pu
 
 ## Contacto
 
-Tu nombre o el nombre del equipo de desarrollo.
+DANIEL ALFONSO BARRERA 
+daniel.barrera.adame@gmail.com
 
 ## Agradecimientos
 
-Menciona a terceros o librerías que fueron de gran ayuda para el desarrollo del proyecto.
+Quisiera expresar mi profundo agradecimiento por la oportunidad que me han brindado
+de unirme a COORDINADORA como DESARROLLADOR SENIOR. 
+Me siento muy honrado y emocionado de formar parte de su equipo.
+
+Espero pronto hacer parte del equipo Coordinadora y poder crecer y aportar en los diferentes proyectos que se desarrollan.
 
 ## Notas Adicionales
 
-Espacio para agregar cualquier información adicional relevante sobre el proyecto.
+No he tenido teimpo de finalizar la validación de docker y redis 
+aunque falto poco para lograr estos objetivos no me dio el tiempo.
+
+En el caso de las pruebas unitarias no he podido iniciar con el proceso de realizar dichas pruebas.
