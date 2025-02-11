@@ -26,8 +26,8 @@ import {loginUsuarioService, logoutService} from "../services/LoginService.js";
 
 export const loginUsuario = async (request, reply) => {
     try {
-        const id = Number(request.params.id)
-        const usuario = await loginUsuarioService(id)
+        const user = request.body
+        const usuario = await loginUsuarioService(user)
 
         if (!usuario) {
             let errFormat = ERRORES_HTTP["500"]

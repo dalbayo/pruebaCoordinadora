@@ -75,10 +75,7 @@ export const crearUsuario = async (request, reply) => {
     try {
         const usuario = request.body
         const id = Number(request.params.id)
-        let usuarios = await crearUsuarioService(usaurio, id)
-        if (usuarios) {
-            reply.status(ERRORES_HTTP["200"].code).send({error: null, response: usuarios[0]})
-        }
+        let usuarios = await crearUsuarioService(usuario, id)
         reply.status(ERRORES_HTTP["200"].code).send({error: null, response: "El usuario se ha creado exitosamente"})
     } catch (err) {
         let errFormat = ERRORES_HTTP["500"]
@@ -108,9 +105,6 @@ export const updateUsuario = async (request, reply) => {
         const usuario = request.body
 
         let usuarios = await updateUsuarioService(id, usuario)
-        if (usuarios) {
-            reply.status(ERRORES_HTTP["200"].code).send({error: null, response: usuarios[0]})
-        }
         reply.status(ERRORES_HTTP["200"].code).send({error: null, response: "El usuario se ha actualizado con exito"})
     } catch (err) {
         let errFormat = ERRORES_HTTP["500"]
@@ -134,9 +128,6 @@ export const deleteUsuario = async (request, reply) => {
         const id = Number(request.params.id)
         // valida existencia del usuario
         const usuarios = await deleteUsuarioService(id)
-        if (usuarios) {
-            reply.status(ERRORES_HTTP["200"].code).send({error: null, response: usuarios[0]})
-        }
         reply.status(ERRORES_HTTP["200"].code).send({error: null, response: "El usuario ha sido borrado con exito"})
     } catch (err) {
         let errFormat = ERRORES_HTTP["500"]

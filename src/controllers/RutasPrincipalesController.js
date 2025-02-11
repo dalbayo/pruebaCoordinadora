@@ -15,14 +15,6 @@ import {getRutaPrincipalByIdService, getRutasPrincipalesAllService} from "../ser
 
 export const getRutasPrincipalesAll = async (request, reply) => {
     try {
-        /*const { redis } = fastifyRedis
-        redis.get("getAllRutas", (err, val) => {
-            /!*reply.send(err || val)*!/
-
-            reply.status(ERRORES_HTTP["200"].code).send( val)
-        })
-*/
-
         const pagina = Number(request.params.pagina)
 
         let rutas = await getRutasPrincipalesAllService(pagina)
@@ -48,6 +40,9 @@ export const getRutaPrincipalById = async (request, reply) => {
     try {
         const id = Number(request.params.id)
         let rutaPrincipal = await getRutaPrincipalByIdService(id)
+
+        console.log("rutaPrincipal")
+        console.log(rutaPrincipal)
         if (!rutaPrincipal) {
 
             let errFormat = ERRORES_HTTP["500"]
@@ -57,9 +52,10 @@ export const getRutaPrincipalById = async (request, reply) => {
 
         // fin consulta subRutas
 
-        rutaPrincipal[0]['rutasSecundarias'] = rutasSecundarias
         reply.status(ERRORES_HTTP["200"].code).send({error: null, response: rutaPrincipal})
     } catch (err) {
+        console.log("err")
+        console.log(err)
         let errFormat = ERRORES_HTTP["500"]
         errFormat.description = errFormat.description + err.message
         reply.status(ERRORES_HTTP["500"].code).send({error: errFormat, response: null})

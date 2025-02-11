@@ -1,6 +1,5 @@
 import {connection} from "../database/db.js"
 import {ERRORES_HTTP} from "../utils/Errores.js"
-import {getVehiculoByIdActivo} from "./VehiculoController.js"
 import {ESTADOS_PLANILLA} from "../utils/EstadoPlanillaViaje.js"
 import {ESTADOS_VEHICULO} from "../utils/EstadoVehiculos.js"
 

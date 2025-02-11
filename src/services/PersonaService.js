@@ -176,16 +176,7 @@ export const updatePersonaService = async (id, persona) => {
     })
 
     const result = await promise
-    if (usuarios) {
-        reply.status(ERRORES_HTTP["200"].code).send({
-            error: null,
-            response: "Los datos de la persona se han actualizado con exito"
-        })
-    }
-    reply.status(ERRORES_HTTP["200"].code).send({
-        error: null,
-        response: "Los datos de la persona se han actualizado con exito"
-    })
+    return usuarios
 }
 
 

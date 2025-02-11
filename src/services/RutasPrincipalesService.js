@@ -83,7 +83,8 @@ export const getRutaPrincipalByIdService = async (id) => {
             })
     })
 
-    const result = await promises
+    const promises =[promise,promiseS];
+    const result = await Promise.all(promises);
     if (!rutaPrincipal) {
         return rutaPrincipal
     }

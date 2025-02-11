@@ -13,7 +13,7 @@ services:
     volumes:
       - "./src/script/bd.sql:/docker-entrypoint-initdb.d/1.sql"
       - "./src/script/data.sql:/docker-entrypoint-initdb.d/2.sql"
-    command: sh -c "mysql -u root -proot coordinadora < /docker-entrypoint-initdb.d/1.sql && mysql -u root -proot coordinadora < /docker-entrypoint-initdb.d/2.sql"
+    #command: sh -c "mysql -u root -proot coordinadora < /docker-entrypoint-initdb.d/1.sql && mysql -u root -proot coordinadora < /docker-entrypoint-initdb.d/2.sql"
     logging:
       driver: none
   web:
@@ -21,8 +21,6 @@ services:
       - mysqldb
     links:
       - mysqldb
-    ports:
-      - 8000:8000
     build: .
     # restart: unless-stopped
     env_file: ./.env

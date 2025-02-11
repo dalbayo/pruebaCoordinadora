@@ -13,7 +13,7 @@ import {fastifyRedis} from "@fastify/redis"
  */
 
 export const getRutasAllService = async (pagina) => {
-    const paginado = 50
+    const paginado = 200
     const paginaInicia = paginado * pagina
 
     let rutas = []

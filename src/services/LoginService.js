@@ -23,13 +23,13 @@ import {ERRORES_HTTP} from "../utils/Errores.js"
  * @author Daniel Barrera
  */
 
-export const loginUsuarioService = async (id) => {
+export const loginUsuarioService = async (user) => {
     let usuario
     const promiseV = new Promise((resolve, reject) => {
         connection.query(
             'SELECT u.id ,u.nombres, u.primer_apellido  as primerApelllido, u.segundo_apellido as segundoApellido, ' +
             '  u.correo, u.id_perfil, p.nombre as nombrePerfil FROM usuario u inner join perfil p on p.id =u.id_perfil ' +
-            '  WHERE u.correo = ? and u.clave= SHA2(?, 224)  limit 1 ', [request.body.correo, request.body.clave], async (error, results) => {
+            '  WHERE u.correo = ? and u.clave= SHA2(?, 224)  limit 1 ', [user.correo, user.clave], async (error, results) => {
 
                 if (error) {
                     return error

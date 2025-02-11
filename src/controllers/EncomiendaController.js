@@ -57,8 +57,10 @@ export const getEncomiendaById = async (request, reply) => {
 export const crearEncomieda = async (request, reply) => {
     try {
         let encuesta = request.body
-        let respuesta = crearEncomiedaService(encuesta);
+        let respuesta = await crearEncomiedaService(encuesta);
 
+        console.log("respuesta")
+        console.log(respuesta)
         if (respuesta[0][0].respuestaOut.includes("Error:")) {
             let errFormat = ERRORES_HTTP["500"]
             errFormat.description = errFormat.description + respuesta[0][0].respuestaOut
@@ -71,6 +73,9 @@ export const crearEncomieda = async (request, reply) => {
             reply.status(ERRORES_HTTP["500"].code).send({error: errFormat, response: null})
         }
     } catch (err) {
+        console.log("err")
+        console.log("err")
+        console.log(err)
         let errFormat = ERRORES_HTTP["500"]
         errFormat.description = errFormat.description + err.message
         reply.status(ERRORES_HTTP["500"].code).send({error: errFormat, response: null})

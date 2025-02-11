@@ -75,7 +75,7 @@ export const crearUsuarioService = async (usuario, id) => {
         connection.query(
             "INSERT INTO coordinadora.usuario\n" +
             "(nombres, primer_apellido, segundo_apellido, correo, clave, id_perfil) \n" +
-            "VALUES(?, ?, ?, ?, ?,?)\n", [request.body.nombres, request.body.primerApellido, request.body.segundoApellido, request.body.correo, clave, request.body.perfil], async (error, results) => {
+            "VALUES(?, ?, ?, ?, SHA2(?, 224),?) ", [usuario.nombres, usuario.primerApellido, usuario.segundoApellido, usuario.correo, usuario.clave, usuario.perfil], async (error, results) => {
 
                 if (error) {
                     return error
@@ -87,7 +87,7 @@ export const crearUsuarioService = async (usuario, id) => {
     })
 
     const result = await promise
-    return usaurios
+    return usuarios
 }
 
 

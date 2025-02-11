@@ -16,10 +16,17 @@ import {getRutasAllService} from "../services/RutasService.js";
 export const getRutasAll = async (request, reply) => {
     try {
         const pagina = Number(request.params.pagina)
-        const paginado = 50
-        const paginaInicia = paginado * pagina
+        const { redis } = fastifyRedis
+        /*fastifyRedis.get("getAllRutas/"+pagina, (err, val) => {
+
+            reply.status(ERRORES_HTTP["200"].code).send( val)
+        })*/
+
 
         let rutas = await getRutasAllService(pagina)
+        /*fastifyRedis.set("getAllRutas/"+pagina,{error:null,response:rutas}, (err) => {
+            reply.status(ERRORES_HTTP["200"].code).send( {error:null,response:rutas});
+        })*/
         reply.status(ERRORES_HTTP["200"].code).send({error: null, response: rutas})
 
     } catch (err) {
