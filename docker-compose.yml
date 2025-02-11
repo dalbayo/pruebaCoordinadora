@@ -1,15 +1,44 @@
 version: "3.9"
 services:
-  web:
-    build: .
-    volumes:
-    - .:/src
+  mysqldb:
+    image: mysql:5.7
+    # restart: unless-stopped
+    env_file: ./.env
+    environment:
+      - MYSQL_PASSWORD=$DB_PASS
+      - MYSQL_ROOT_PASSWORD=$DB_PASS
+      - MYSQL_DATABASE=$DB_DATABASE
     ports:
-      - "8000:5000"
-    mem_limit: 2000m
+      - $MYSQLDB_LOCAL_PORT:$MYSQLDB_DOCKER_PORT
+    volumes:
+      - "./src/script/bd.sql:/docker-entrypoint-initdb.d/1.sql"
+      - "./src/script/data.sql:/docker-entrypoint-initdb.d/2.sql"
+    command: sh -c "mysql -u root -proot coordinadora < /docker-entrypoint-initdb.d/1.sql && mysql -u root -proot coordinadora < /docker-entrypoint-initdb.d/2.sql"
+    logging:
+      driver: none
+  web:
+    depends_on:
+      - mysqldb
+    links:
+      - mysqldb
+    ports:
+      - 8000:8000
+    build: .
+    # restart: unless-stopped
+    env_file: ./.env
+    ports:
+      - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
+    environment:
+      - MYSQL_USER=$MYSQLDB_USER
+      - MYSQL_PASSWORD=$MYSQLDB_PASSWORD
+      - MYSQL_ROOT_PASSWORD=$MYSQLDB_ROOT_PASSWORD
+      - MYSQL_DATABASE=$MYSQLDB_DATABASE
+    volumes:
+      - .:/src
+    command: sh -c "npm install && npm start"
   redis:
     image: redis
-    container_name: node_challenge_redis
+    container_name: node_redis
     restart: on-failure
     environment:
       - ALLOW_EMPTY_PASSWORD=yes

@@ -3,8 +3,8 @@ import {fastifyJwt} from "@fastify/jwt";
 import fastifyRedis from '@fastify/redis';
 import fastifySwagger from '@fastify/swagger';
 import fastifySwaggerUi from '@fastify/swagger-ui';
-import { connection } from "./database/db.js"
-import routes from "./routers/routers.js"
+import { connection} from "./src/database/db.js";
+import routes from "./src/routers/routers.js"
 
 export const fastify = Fastify({
     logger:true
@@ -89,16 +89,15 @@ fastify.register(fastifyRedis, {
 
 
 
-
-/*fastify.get('/', async function handler (request, reply) {
+fastify.get('/', async function handler (request, reply) {
     const { redis } = fastify
     let result = redis.get('Test', (err, val) => {
         return err || val;
     });
     return { result }
-});*/
+});
 
-const port = process.env.port
+const port = process.env.PORT
 export const validTokens = new Map();
 const startServer = async () => {
     // Run the server!

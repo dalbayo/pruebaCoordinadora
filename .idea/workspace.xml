@@ -2,12 +2,51 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5d5b966a-6439-4ae3-bfe2-21bd7b024869" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/shemas/ConsultaInformeEncomiendasShemaDto.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/shemas/ConsultaInformeMetricasShemaDto.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/shemas/EncomiendaShemaDto.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/shemas/LoginShemaDto.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/shemas/PersonaShemaDto.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/shemas/PlanillaViajeShemaDto.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/shemas/UsuarioShemaDto.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controlers/CiudadControler.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/controlers/EncomiendaControler.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/controlers/LoginControler.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/controlers/PerfilControler.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/controlers/PersonaControler.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/controlers/PlanillaViajeControler.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/controlers/RutasControler.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/controlers/RutasPrincipalesControler.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/controlers/TipoDocumentoControler.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/controlers/TipoMercanciaControler.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/controlers/TipoServicioControler.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/controlers/UsuarioControler.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/controlers/VehiculoControler.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/db.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routers/routers.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/script/bd.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/script/coordinadora.postman_collection.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/script/data.sql" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/Errores.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/EstadoEncomienda.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/EstadoPlanillaViaje.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/EstadoVehiculos.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/validations/ValidateConsultaInformeEncomiendasDto.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/validations/ValidateConsultaInformeMetricasDto.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/validations/ValidateEncomiendaDto.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/validations/ValidateLoginDto.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/validations/ValidatePersonaDto.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/validations/ValidatePlanillaViajeDto.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/validations/ValidateToken.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/validations/ValidateTokenSimple.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/validations/ValidateUsuarioDto.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,10 +69,17 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Software/pruebaCoordinadora/src/shemas&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2022.2\\plugins\\JavaScriptLanguage\\jsLanguageServicesImpl\\external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Software\pruebaCoordinadora\src\shemas" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -50,10 +96,27 @@
       <workItem from="1739188099804" duration="31000" />
       <workItem from="1739196620316" duration="94000" />
       <workItem from="1739198148409" duration="25000" />
+      <workItem from="1739224625392" duration="505000" />
+      <workItem from="1739225474774" duration="73000" />
+      <workItem from="1739226582179" duration="168000" />
+      <workItem from="1739227083344" duration="1019000" />
+      <workItem from="1739228126603" duration="13469000" />
+      <workItem from="1739242764848" duration="1613000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
