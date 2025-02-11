@@ -2,16 +2,15 @@ import Ajv from "ajv"
 import ajvErrors from "ajv-errors"
 import addFormats from "ajv-formats"
 import addErrors from "ajv-errors"
-import { Type } from "@sinclair/typebox"
+import {Type} from "@sinclair/typebox"
 import {ERRORES_HTTP} from "../utils/Errores.js"
 import validateTokenSimple from "./ValidateTokenSimple.js"
 import {ConsultaEncomiendaShemaDto} from "../shemas/ConsultaInformeEncomiendasShemaDto.js"
 
 
+const DTO_PROPERTY_NAMES = ['pagina', 'fechaInicio', 'fechaFin', 'estado', 'vehiculo']
 
-const DTO_PROPERTY_NAMES = ['pagina', 'fechaInicio','fechaFin','estado','vehiculo']
-
-const ajv = addFormats(new Ajv({ allErrors: true }), [
+const ajv = addFormats(new Ajv({allErrors: true}), [
     'date-time',
     'time',
     'date',
@@ -27,59 +26,50 @@ const ajv = addFormats(new Ajv({ allErrors: true }), [
     'relative-json-pointer',
     'regex'
 ]).addKeyword('kind').addKeyword('modifier').addKeyword('querystring')
-addFormats(ajv,["email"])
-addErrors(ajv, { keepErrors: false })
+addFormats(ajv, ["email"])
+addErrors(ajv, {keepErrors: false})
 const validador = ajv.compile(ConsultaEncomiendaShemaDto)
- 
 
 
+const validateConsultaInformeEncomiendasDto = (req, res, next) => {
 
-const validateConsultaInformeEncomiendasDto = (req, res, next) =>{
-
-    if(validateTokenSimple(req,res)){
+    if (validateTokenSimple(req, res)) {
 
         const consultaEncomiendaDto = req.body
-        if(typeof consultaEncomiendaDto !== 'object') {
-            res.status(ERRORES_HTTP["400"].code).send( {error:ERRORES_HTTP["400"],response:null})
+        if (typeof consultaEncomiendaDto !== 'object') {
+            res.status(ERRORES_HTTP["400"].code).send({error: ERRORES_HTTP["400"], response: null})
         }
         const nombresPropiedades = Object.keys(consultaEncomiendaDto)
 
-        const validaPropiedades = nombresPropiedades.length== DTO_PROPERTY_NAMES.length &&
+        const validaPropiedades = nombresPropiedades.length == DTO_PROPERTY_NAMES.length &&
             nombresPropiedades.every((nombrePropiedad) =>
                 DTO_PROPERTY_NAMES.includes(nombrePropiedad)
             )
-        if(!validaPropiedades){
-            //res.status(ERRORES_HTTP["400"].code).send( {error:ERRORES_HTTP["400"],response:null})
-        }
 
         const isconsultaEncomiendaDtoValido = validador(req.body)
-        if (!isconsultaEncomiendaDtoValido)
-        {
-            let errores  = []
-            for(const val of validador.errors) {
+        if (!isconsultaEncomiendaDtoValido) {
+            let errores = []
+            for (const val of validador.errors) {
 
-                if(!val.message.includes("required")){
-                    errores.push({error:"La propiedad "+ val.instancePath + " "  + val.message} )
+                if (!val.message.includes("required")) {
+                    errores.push({error: "La propiedad " + val.instancePath + " " + val.message})
                 }
             }
-            if(errores.length==0){
+            if (errores.length == 0) {
                 next()
-            }else{
+            } else {
 
                 let formatoError = {
                     "code": ERRORES_HTTP["400"].code,
                     "message": ERRORES_HTTP["400"].message,
                     "description": errores
                 }
-                res.status(ERRORES_HTTP["400"].code).send( {error:formatoError,response:null})
+                res.status(ERRORES_HTTP["400"].code).send({error: formatoError, response: null})
             }
-            // res.status(ERRORES_HTTP["400"].code).send({errores:errores})
-            //res.status(400).send("ERROR DE VALIDACION")
         }
         next()
-    }else{
-
-        res.status(ERRORES_HTTP["401"].code).send( {error:ERRORES_HTTP["401"],response:null})
+    } else {
+        res.status(ERRORES_HTTP["401"].code).send({error: ERRORES_HTTP["401"], response: null})
     }
 
 

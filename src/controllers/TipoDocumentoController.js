@@ -1,7 +1,7 @@
-import { connection } from "../database/db.js"
+import {connection} from "../database/db.js"
 import {ERRORES_HTTP} from "../utils/Errores.js"
 import {fastifyRedis} from "@fastify/redis"
-
+import {getTipoDocumentosAllService} from "../services/TipoDocumentoService.js";
 
 
 /**
@@ -12,33 +12,17 @@ import {fastifyRedis} from "@fastify/redis"
  * @returns {Promise<void>}
  * @author Daniel Barrera
  */
-export const getTipoDocumentosAll = async (request, reply) =>{
+export const getTipoDocumentosAll = async (request, reply) => {
     try {
 
-        let resultado  = []
+        let resultado = await  getTipoDocumentosAllService()
 
-        const promise1 =  new Promise((resolve, reject)=>{
-            connection.query(
-                'select * from tipo_documento   ',
-                async (error, results)=>{
-                    if(error){
-                        return error
-                    }
-                    resultado = results
-                    return resolve(results)
-
-                })
-        })
-
-        const promises =[promise1]
-        const result = await Promise.all(promises)
-
-        reply.status(ERRORES_HTTP["200"].code).send( {error:null,response:resultado})
+        reply.status(ERRORES_HTTP["200"].code).send({error: null, response: resultado})
 
     } catch (err) {
         let errFormat = ERRORES_HTTP["500"]
-        errFormat.description = errFormat.description +err.message
-        reply.status(ERRORES_HTTP["500"].code).send( {error:errFormat,response:null})
+        errFormat.description = errFormat.description + err.message
+        reply.status(ERRORES_HTTP["500"].code).send({error: errFormat, response: null})
     }
 }
 

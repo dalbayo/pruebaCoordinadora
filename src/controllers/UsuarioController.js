@@ -1,5 +1,11 @@
-import { connection } from "../database/db.js"
+import {connection} from "../database/db.js"
 import {ERRORES_HTTP} from "../utils/Errores.js"
+import {
+    crearUsuarioService, deleteUsuarioService,
+    getUsusarioByIdService,
+    getUsusariosAllService,
+    updateUsuarioService
+} from "../services/UsuarioService.js";
 
 
 /**
@@ -10,33 +16,15 @@ import {ERRORES_HTTP} from "../utils/Errores.js"
  * @returns {Promise<void>}
  * @author Daniel Barrera
  */
-export const getUsusariosAll = async (request, reply) =>{
+export const getUsusariosAll = async (request, reply) => {
     try {
-        let usuarios  = []
-
-        const promise1 =  new Promise((resolve, reject)=>{
-            connection.query(
-                'SELECT u.id ,u.nombres, u.primer_apellido  as primerApelllido, u.segundo_apellido as segundoApellido, \n' +
-                '\tu.correo, u.id_perfil, p.nombre as nombrePerfil FROM usuario u inner join perfil p on p.id =u.id_perfil ',
-                async (error, results)=>{
-                    if(error){
-                        return error
-                    }
-                    usuarios = results
-                    return resolve(results)
-
-                    // reply.status(200).send(usuarios)
-                })
-        })
-
-        const promises =[promise1]
-        const result = await Promise.all(promises)
-        reply.status(ERRORES_HTTP["200"].code).send( {error:null,response:usuarios})
+        let usuarios = await getUsusariosAllService()
+        reply.status(ERRORES_HTTP["200"].code).send({error: null, response: usuarios})
 
     } catch (err) {
         let errFormat = ERRORES_HTTP["500"]
-        errFormat.description = errFormat.description +err.message
-        reply.status(ERRORES_HTTP["500"].code).send( {error:errFormat,response:null})
+        errFormat.description = errFormat.description + err.message
+        reply.status(ERRORES_HTTP["500"].code).send({error: errFormat, response: null})
     }
 }
 
@@ -48,39 +36,22 @@ export const getUsusariosAll = async (request, reply) =>{
  * @returns {Promise<void>}
  * @author Daniel Barrera
  */
-export const getUsusarioById = async (request, reply) =>{
+export const getUsusarioById = async (request, reply) => {
     try {
         const id = Number(request.params.id)
-        let usuario
-
-        const promise1 =  new Promise((resolve, reject)=>{
-            connection.query(
-                'SELECT u.id ,u.nombres, u.primer_apellido  as primerApelllido, u.segundo_apellido as segundoApellido,  ' +
-                ' u.correo, u.id_perfil, p.nombre as nombrePerfil FROM usuario u inner join perfil p on p.id =u.id_perfil WHERE u.id = ?  limit 1 ', [id],async (error, results)=>{
-                    if(error){
-                        return error
-                    }
-                    usuario = results
-                    return resolve(results)
-
-                    // reply.status(200).send(usuarios)
-                })
-        })
-
-        const promises =[promise1]
-        const result = await Promise.all(promises)
-        if(!usuario){
+        let usuario = await getUsusarioByIdService(id)
+        if (!usuario) {
 
             let errFormat = ERRORES_HTTP["500"]
             errFormat.description = errFormat.description + " No existe el usuario"
-            reply.status(ERRORES_HTTP["500"].code).send( {error:errFormat,response:null})
+            reply.status(ERRORES_HTTP["500"].code).send({error: errFormat, response: null})
         }
 
-        reply.status(ERRORES_HTTP["200"].code).send( {error:null,response:usuario})
+        reply.status(ERRORES_HTTP["200"].code).send({error: null, response: usuario})
     } catch (err) {
         let errFormat = ERRORES_HTTP["500"]
-        errFormat.description = errFormat.description +err.message
-        reply.status(ERRORES_HTTP["500"].code).send( {error:errFormat,response:null})
+        errFormat.description = errFormat.description + err.message
+        reply.status(ERRORES_HTTP["500"].code).send({error: errFormat, response: null})
     }
 }
 
@@ -100,36 +71,19 @@ export const getUsusarioById = async (request, reply) =>{
  * @author Daniel Barrera
  */
 
-export const crearUsuario = async (request, reply) =>{
+export const crearUsuario = async (request, reply) => {
     try {
-        const {usuario}  = request.body
+        const usuario = request.body
         const id = Number(request.params.id)
-        let usuarios  = []
-        const promise1 =  new Promise((resolve, reject)=>{
-            connection.query(
-                "INSERT INTO coordinadora.usuario\n" +
-                "(nombres, primer_apellido, segundo_apellido, correo, clave, id_perfil) \n" +
-                "VALUES(?, ?, ?, ?, ?,?)\n", [request.body.nombres,request.body.primerApellido,request.body.segundoApellido,request.body.correo,clave, request.body.perfil],async (error, results)=>{
-
-                    if(error){
-                        return error
-                    }
-                    usuarios = results
-                    return resolve(results)
-
-                })
-        })
-
-        const promises =[promise1]
-        const result = await Promise.all(promises)
-        if(usuarios){
-            reply.status(ERRORES_HTTP["200"].code).send( {error:null,response:usuarios[0]})
+        let usuarios = await crearUsuarioService(usaurio, id)
+        if (usuarios) {
+            reply.status(ERRORES_HTTP["200"].code).send({error: null, response: usuarios[0]})
         }
-        reply.status(ERRORES_HTTP["200"].code).send( {error:null,response:"El usuario se ha creado exitosamente"})
+        reply.status(ERRORES_HTTP["200"].code).send({error: null, response: "El usuario se ha creado exitosamente"})
     } catch (err) {
         let errFormat = ERRORES_HTTP["500"]
-        errFormat.description = errFormat.description +err.message
-        reply.status(ERRORES_HTTP["500"].code).send( {error:errFormat,response:null})
+        errFormat.description = errFormat.description + err.message
+        reply.status(ERRORES_HTTP["500"].code).send({error: errFormat, response: null})
     }
 }
 
@@ -148,65 +102,20 @@ export const crearUsuario = async (request, reply) =>{
  * @returns {Promise<void>}
  * @author Daniel Barrera
  */
-export const updateUsuario = async (request, reply) =>{
+export const updateUsuario = async (request, reply) => {
     try {
-        let usuarios  = []
         const id = Number(request.params.id)
+        const usuario = request.body
 
-        // valida existencia del usuario
-        let usuario
-
-        const promiseV =  new Promise((resolve, reject)=>{
-            connection.query(
-                'SELECT * FROM usuario WHERE id = ? and clave= SHA2(?, 224)  limit 1 ', [id, request.body.clave],async (error, results)=>{
-                    // console.error(" inicia resul")
-                    // console.log(results)
-                    if(error){
-                        return error
-                    }
-                    usuario = results
-                    return resolve(results)
-
-                    // reply.status(200).send(usuarios)
-                })
-        })
-
-        const promisesv =[promiseV]
-        const resultv = await Promise.all(promisesv)
-        if(!usuario){
-            let errFormat = ERRORES_HTTP["500"]
-            errFormat.description = errFormat.description + " El usuario no es valido"
-            reply.status(ERRORES_HTTP["500"].code).send( {error:errFormat,response:null})
+        let usuarios = await updateUsuarioService(id, usuario)
+        if (usuarios) {
+            reply.status(ERRORES_HTTP["200"].code).send({error: null, response: usuarios[0]})
         }
-        //fin valida existencia del usuario
-
-        const promise1 =  new Promise((resolve, reject)=>{
-            connection.query(
-                "UPDATE usuario\n" +
-                "SET nombres=?, primer_apellido=?, segundo_apellido=?, correo=?,  clave= SHA2(?, 224), id_perfil=? \n" +
-                "WHERE id=?" , [request.body.nombres,request.body.primerApellido,request.body.segundoApellido,request.body.correo,request.body.clave, request.body.perfil, id],async (error, results)=>{
-
-                    if(error){
-                        return error
-                    }
-                    usuarios = results
-                    return resolve(results)
-
-                })
-        })
-
-        const promises =[promise1]
-        const result = await Promise.all(promises)
-
-        if(usuarios){
-            reply.status(ERRORES_HTTP["200"].code).send( {error:null,response:usuarios[0]})
-        }
-        //reply.status(500).send({error:'error interno'})
-        reply.status(ERRORES_HTTP["200"].code).send( {error:null,response:"El usuario se ha actualizado con exito"})
+        reply.status(ERRORES_HTTP["200"].code).send({error: null, response: "El usuario se ha actualizado con exito"})
     } catch (err) {
         let errFormat = ERRORES_HTTP["500"]
-        errFormat.description = errFormat.description +err.message
-        reply.status(ERRORES_HTTP["500"].code).send( {error:errFormat,response:null})
+        errFormat.description = errFormat.description + err.message
+        reply.status(ERRORES_HTTP["500"].code).send({error: errFormat, response: null})
     }
 }
 
@@ -220,61 +129,18 @@ export const updateUsuario = async (request, reply) =>{
  * @author Daniel Barrera
  */
 
-export const deleteUsuario = async (request, reply) =>{
+export const deleteUsuario = async (request, reply) => {
     try {
-        let usuarios  = []
         const id = Number(request.params.id)
         // valida existencia del usuario
-        let usuario
-
-        const promiseV =  new Promise((resolve, reject)=>{
-            connection.query(
-                'SELECT * FROM usuario WHERE id = ?  limit 1 ', [id],async (error, results)=>{
-                    // console.error(" inicia resul")
-                    // console.log(results)
-                    if(error){
-                        return error
-                    }
-                    usuario = results
-                    return resolve(results)
-
-                    // reply.status(200).send(usuarios)
-                })
-        })
-
-        const promisesv =[promiseV]
-        const resultv = await Promise.all(promisesv)
-        if(!usuario){
-            let errFormat = ERRORES_HTTP["500"]
-            errFormat.description = errFormat.description + " El usuario no es valido."
-            reply.status(ERRORES_HTTP["500"].code).send( {error:errFormat,response:null})
+        const usuarios = await deleteUsuarioService(id)
+        if (usuarios) {
+            reply.status(ERRORES_HTTP["200"].code).send({error: null, response: usuarios[0]})
         }
-        //fin valida existencia del usuario
-
-        const promise1 =  new Promise((resolve, reject)=>{
-            connection.query(
-                "DELETE FROM coordinadora.usuario WHERE id=?" , [ id],async (error, results)=>{
-
-                    if(error){
-                        return error
-                    }
-                    usuarios = results
-                    return resolve(results)
-
-                    // reply.status(200).send(usuarios)
-                })
-        })
-
-        const promises =[promise1]
-        const result = await Promise.all(promises)
-        if(usuarios){
-            reply.status(ERRORES_HTTP["200"].code).send( {error:null,response:usuarios[0]})
-        }
-        //reply.status(500).send({error:'error interno'})
-        reply.status(ERRORES_HTTP["200"].code).send( {error:null,response:"El usuario ha sido borrado con exito"})
+        reply.status(ERRORES_HTTP["200"].code).send({error: null, response: "El usuario ha sido borrado con exito"})
     } catch (err) {
         let errFormat = ERRORES_HTTP["500"]
-        errFormat.description = errFormat.description +err.message
-        reply.status(ERRORES_HTTP["500"].code).send( {error:errFormat,response:null})
+        errFormat.description = errFormat.description + err.message
+        reply.status(ERRORES_HTTP["500"].code).send({error: errFormat, response: null})
     }
 }

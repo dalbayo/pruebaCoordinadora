@@ -1,4 +1,4 @@
-import { Type } from "@sinclair/typebox"
+import {Type} from "@sinclair/typebox"
 import Ajv from "ajv"
 import addErrors from "ajv-errors"
 import addFormats from "ajv-formats"

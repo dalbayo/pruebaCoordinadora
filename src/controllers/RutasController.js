@@ -1,6 +1,7 @@
-import { connection } from "../database/db.js"
+import {connection} from "../database/db.js"
 import {ERRORES_HTTP} from "../utils/Errores.js"
 import {fastifyRedis} from "@fastify/redis"
+import {getRutasAllService} from "../services/RutasService.js";
 
 
 /**
@@ -12,39 +13,19 @@ import {fastifyRedis} from "@fastify/redis"
  * @author Daniel Barrera
  */
 
-export const getRutasAll = async (request, reply) =>{
+export const getRutasAll = async (request, reply) => {
     try {
         const pagina = Number(request.params.pagina)
-        const paginado=50
-        const paginaInicia = paginado*pagina
+        const paginado = 50
+        const paginaInicia = paginado * pagina
 
-        let rutas  = []
-        const promise1 =  new Promise((resolve, reject)=>{
-            connection.query(
-                'select r.id, r.nombre, r.descripcion, r.id_ciudad_origen as ciudadOrigen, c.nombre as nombreCiudadOrigen,  ' +
-                '  r.id_ciudad_destino as ciudadDestino, c2.nombre as nombreCiudadDestino   ' +
-                '  from ruta r   ' +
-                '    inner join ciudad c on c.id =r.id_ciudad_origen    ' +
-                '    inner join ciudad c2 on c2.id =r.id_ciudad_destino  limit  '+paginaInicia + ','+ paginado,
-                async (error, results)=>{
-                    if(error){
-                        return error
-                    }
-                    rutas = results
-                    return resolve(results)
-
-                    // reply.status(200).send(usuarios)
-                })
-        })
-
-        const promises =[promise1]
-        const result = await Promise.all(promises)
-       reply.status(ERRORES_HTTP["200"].code).send( {error:null,response:rutas})
+        let rutas = await getRutasAllService(pagina)
+        reply.status(ERRORES_HTTP["200"].code).send({error: null, response: rutas})
 
     } catch (err) {
         let errFormat = ERRORES_HTTP["500"]
-        errFormat.description = errFormat.description +err.message
-        reply.status(ERRORES_HTTP["500"].code).send( {error:errFormat,response:null})
+        errFormat.description = errFormat.description + err.message
+        reply.status(ERRORES_HTTP["500"].code).send({error: errFormat, response: null})
     }
 }
 

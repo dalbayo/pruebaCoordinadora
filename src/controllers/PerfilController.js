@@ -1,6 +1,7 @@
-import { connection } from "../database/db.js"
+import {connection} from "../database/db.js"
 import {ERRORES_HTTP} from "../utils/Errores.js"
 import {fastifyRedis} from "@fastify/redis"
+import {getPerfilesAllService, getPerfilesAllServicio} from "../services/PerfilService.js";
 
 
 /**
@@ -21,32 +22,16 @@ import {fastifyRedis} from "@fastify/redis"
  * @author Daniel Barrera
  */
 
-export const getPerfilesAll = async (request, reply) =>{
+export const getPerfilesAll = async (request, reply) => {
     try {
+        let resultado = await getPerfilesAllService()
+        reply.status(ERRORES_HTTP["200"].code).send({error: null, response: resultado})
 
-        let resultado  = []
-
-        const promise1 =  new Promise((resolve, reject)=>{
-            connection.query(
-                'select * from perfil   ',
-                async (error, results)=>{
-                    if(error){
-                        return error
-                    }
-                    resultado = results
-                    return resolve(results)
-                })
-        })
-
-        const promises =[promise1]
-        const result = await Promise.all(promises)
-
-         reply.status(ERRORES_HTTP["200"].code).send( {error:null,response:resultado})
-
-    } catch (err) {
+    } catch (c) {
+        console.log("getPerfilesAll errir")
         let errFormat = ERRORES_HTTP["500"]
-        errFormat.description = errFormat.description +err.message
-        reply.status(ERRORES_HTTP["500"].code).send( {error:errFormat,response:null})
+        errFormat.description = errFormat.description + err.message
+        reply.status(ERRORES_HTTP["500"].code).send({error: errFormat, response: null})
     }
 }
 

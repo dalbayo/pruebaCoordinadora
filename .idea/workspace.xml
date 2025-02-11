@@ -2,51 +2,56 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5d5b966a-6439-4ae3-bfe2-21bd7b024869" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/shemas/ConsultaInformeEncomiendasShemaDto.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/shemas/ConsultaInformeMetricasShemaDto.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/shemas/EncomiendaShemaDto.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/shemas/LoginShemaDto.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/shemas/PersonaShemaDto.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/shemas/PlanillaViajeShemaDto.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/shemas/UsuarioShemaDto.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/CiudadService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/EncomiendaService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/LoginService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/PerfilService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/PersonaService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/PlanillaViajeService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/RutasPrincipalesService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/RutasService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/TipoDocumentoService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/TipoMercanciaService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/TipoServicioService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/UsuarioService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/VehiculoController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controlers/CiudadControler.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/controlers/EncomiendaControler.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/controlers/LoginControler.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/controlers/PerfilControler.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/controlers/PersonaControler.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/controlers/PlanillaViajeControler.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/controlers/RutasControler.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/controlers/RutasPrincipalesControler.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/controlers/TipoDocumentoControler.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/controlers/TipoMercanciaControler.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/controlers/TipoServicioControler.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/controlers/UsuarioControler.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/controlers/VehiculoControler.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/db.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routers/routers.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/script/bd.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/script/coordinadora.postman_collection.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/script/data.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/Errores.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/EstadoEncomienda.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/EstadoPlanillaViaje.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/EstadoVehiculos.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/validations/ValidateConsultaInformeEncomiendasDto.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/validations/ValidateConsultaInformeMetricasDto.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/validations/ValidateEncomiendaDto.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/validations/ValidateLoginDto.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/validations/ValidatePersonaDto.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/validations/ValidatePlanillaViajeDto.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/validations/ValidateToken.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/validations/ValidateTokenSimple.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/validations/ValidateUsuarioDto.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/CiudadController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/CiudadController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/EncomiendaController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/EncomiendaController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/LoginController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/LoginController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/PerfilController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/PerfilController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/PersonaController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/PersonaController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/PlanillaViajeController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/PlanillaViajeController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/RutasController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/RutasController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/RutasPrincipalesController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/RutasPrincipalesController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/TipoDocumentoController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/TipoDocumentoController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/TipoMercanciaController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/TipoMercanciaController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/TipoServicioController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/TipoServicioController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/UsuarioController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/UsuarioController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/VehiculoController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/VehiculoController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/db.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/db.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routers/routers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routers/routers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shemas/ConsultaInformeEncomiendasShemaDto.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/shemas/ConsultaInformeEncomiendasShemaDto.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shemas/ConsultaInformeMetricasShemaDto.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/shemas/ConsultaInformeMetricasShemaDto.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shemas/EncomiendaShemaDto.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/shemas/EncomiendaShemaDto.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shemas/LoginShemaDto.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/shemas/LoginShemaDto.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shemas/PersonaShemaDto.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/shemas/PersonaShemaDto.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shemas/PlanillaViajeShemaDto.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/shemas/PlanillaViajeShemaDto.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shemas/UsuarioShemaDto.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/shemas/UsuarioShemaDto.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/Errores.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/Errores.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/EstadoEncomienda.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/EstadoEncomienda.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/EstadoPlanillaViaje.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/EstadoPlanillaViaje.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/EstadoVehiculos.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/EstadoVehiculos.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/validations/ValidateConsultaInformeEncomiendasDto.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/validations/ValidateConsultaInformeEncomiendasDto.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/validations/ValidateConsultaInformeMetricasDto.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/validations/ValidateConsultaInformeMetricasDto.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/validations/ValidateEncomiendaDto.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/validations/ValidateEncomiendaDto.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/validations/ValidateLoginDto.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/validations/ValidateLoginDto.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/validations/ValidatePersonaDto.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/validations/ValidatePersonaDto.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/validations/ValidatePlanillaViajeDto.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/validations/ValidatePlanillaViajeDto.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/validations/ValidateToken.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/validations/ValidateToken.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/validations/ValidateTokenSimple.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/validations/ValidateTokenSimple.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/validations/ValidateUsuarioDto.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/validations/ValidateUsuarioDto.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,19 +69,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Software/pruebaCoordinadora/src/shemas&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2022.2\\plugins\\JavaScriptLanguage\\jsLanguageServicesImpl\\external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "D:/Software/pruebaCoordinadora/src/services",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.keymap",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2022.2\\plugins\\JavaScriptLanguage\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Software\pruebaCoordinadora\src\services" />
       <recent name="D:\Software\pruebaCoordinadora\src\shemas" />
     </key>
   </component>
@@ -101,7 +108,7 @@
       <workItem from="1739226582179" duration="168000" />
       <workItem from="1739227083344" duration="1019000" />
       <workItem from="1739228126603" duration="13469000" />
-      <workItem from="1739242764848" duration="1613000" />
+      <workItem from="1739242764848" duration="10032000" />
     </task>
     <servers />
   </component>

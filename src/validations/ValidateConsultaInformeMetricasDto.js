@@ -47,10 +47,6 @@ const validateConsultaInformeMetricasDto = (req, res, next) =>{
             nombresPropiedades.every((nombrePropiedad) =>
                 DTO_PROPERTY_NAMES.includes(nombrePropiedad)
             )
-        if(!validaPropiedades){
-            //res.status(ERRORES_HTTP["400"].code).send( {error:ERRORES_HTTP["400"],response:null})
-        }
-
         const isconsultaEncomiendaDtoValido = validador(req.body)
         if (!isconsultaEncomiendaDtoValido)
         {
@@ -72,8 +68,6 @@ const validateConsultaInformeMetricasDto = (req, res, next) =>{
                 }
                 res.status(ERRORES_HTTP["400"].code).send( {error:formatoError,response:null})
             }
-            // res.status(ERRORES_HTTP["400"].code).send({errores:errores})
-            //res.status(400).send("ERROR DE VALIDACION")
         }
         next()
     }else{

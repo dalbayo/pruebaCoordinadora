@@ -1,6 +1,11 @@
-import { connection } from "../database/db.js"
+import {connection} from "../database/db.js"
 import {ERRORES_HTTP} from "../utils/Errores.js"
 import {ESTADOS_ENCOMIENDA} from "../utils/EstadoEncomienda.js"
+import {
+    asignarEncomiendaService, consultaInformeEncomiendaService, consultaInformeMetricasService,
+    crearEncomiedaService, entregarEncomiendaService,
+    getEncomiendaByIdService
+} from "../services/EncomiendaService.js";
 
 
 /**
@@ -20,54 +25,23 @@ import {ESTADOS_ENCOMIENDA} from "../utils/EstadoEncomienda.js"
  * @returns {Promise<void>}
  * @author Daniel Barrera
  */
-export const getEncomiendaById = async (request, reply) =>{
+export const getEncomiendaById = async (request, reply) => {
     try {
         const id = Number(request.params.id)
-        let encomienda
-
-        const promise1 =  new Promise((resolve, reject)=>{
-            connection.query(
-                "SELECT e.id, e.peso, e.dimensiones, e.telefono, e.valor_declarado as valorDeclarado, e.valor_encomienda as valor,   " +
-                "  e.cantidad_articulos as cantidad, e.direccion_envio as direccion,   " +
-                "  e.coordenadas_envio as coordenada, e.estado, e.notas, e.id_ciudad_origen as cidudadOrigen,  " +
-                "  e.id_ciudad_destino as ciudadDestino, e.id_remitente as remitente,   " +
-                "  e.id_destinatario as destinatario, e.id_tipo_mercancia as tipoMercancia,   " +
-                "  e.id_tipo_servicio as tipoServicio, e.id_planilla_viaje as planillaViaje, c.nombre as ciudadOrigenNombre,  " +
-                "  c2.nombre as ciudadDestinoNombre, tm.nombre as tipoMercanciaNombre,  " +
-                "  ts.nombre as tipoServicioNombre, concat(p.nombres,' ',p.primer_apellido,' ',p.segundo_apellido) as nombreRemitente,  " +
-                "  p.numero_documento as numeroDocumentoRemitente, concat(p2.nombres,' ',p2.primer_apellido,' ',p2.segundo_apellido) as nombreDestinatario,   " +
-                "  p2.numero_documento as numeroDocumentoDestinatario  " +
-                " FROM coordinadora.encomienda e    " +
-                "   inner join ciudad c on c.id = e.id_ciudad_origen  " +
-                "   inner join ciudad c2 on c2.id = e.id_ciudad_destino   " +
-                "   inner join tipo_mercancia tm   on tm.id = e.id_tipo_mercancia   " +
-                "   inner join tipo_servicio ts  on ts.id = e.id_tipo_servicio   " +
-                "   inner join persona p     on p.id = e.id_remitente   " +
-                "   inner join persona p2   on p2.id = e.id_destinatario   WHERE e.id = ?  limit 1 ", [id],async (error, results)=>{
-
-                    if(error){
-                        return error
-                    }
-                    encomienda = results
-                    return resolve(results)
-                })
-        })
-
-
-        const result = await promise1
-        if(!encomienda){
+        let encomienda = await getEncomiendaByIdService(id);
+        if (!encomienda) {
 
             let errFormat = ERRORES_HTTP["500"]
             errFormat.description = errFormat.description + " No existe la encomienda"
-            reply.status(ERRORES_HTTP["500"].code).send( {error:errFormat,response:null})
-        }else{
-            reply.status(ERRORES_HTTP["200"].code).send( {error:null,response:encomienda})
+            reply.status(ERRORES_HTTP["500"].code).send({error: errFormat, response: null})
+        } else {
+            reply.status(ERRORES_HTTP["200"].code).send({error: null, response: encomienda})
         }
 
     } catch (err) {
         let errFormat = ERRORES_HTTP["500"]
-        errFormat.description = errFormat.description +err.message
-        reply.status(ERRORES_HTTP["500"].code).send( {error:errFormat,response:null})
+        errFormat.description = errFormat.description + err.message
+        reply.status(ERRORES_HTTP["500"].code).send({error: errFormat, response: null})
     }
 }
 
@@ -80,46 +54,26 @@ export const getEncomiendaById = async (request, reply) =>{
  * @returns {Promise<void>}
  * @author Daniel Barrera
  */
-export const crearEncomieda = async (request, reply) =>{
+export const crearEncomieda = async (request, reply) => {
     try {
+        let encuesta = request.body
+        let respuesta = crearEncomiedaService(encuesta);
 
-        let respuesta
-        const promise1 =  new Promise((resolve, reject)=>{
-            connection.query(
-                " CALL coordinadora.createEncomienda(?,?,?,?, " +
-                "?,?, ?,?," +
-                "?,?, ?,?," +
-                "?,?, ?,?, @resultado)   ",
-                [request.body.peso, request.body.dimensiones, request.body.telefono, request.body.valorDeclarado,
-                    request.body.valorEncomienda, request.body.cantidadArticulos, request.body.direccion, request.body.coordenadas,
-                    ESTADOS_ENCOMIENDA.EN_ESPERA.code, request.body.notas, request.body.ciudadOrigen, request.body.ciudadDestino,
-                    request.body.remitente, request.body.destinatario, request.body.tipoMercancia, request.body.tipoServicio],async (error, results,fields)=>{
-
-                    if(error){
-                        return error
-                    }
-                    respuesta = results
-                    return resolve(results)
-                })
-        })
-
-        const promises =[promise1]
-        const result = await Promise.all(promises)
-        if(respuesta[0][0].respuestaOut.includes("Error:")){
+        if (respuesta[0][0].respuestaOut.includes("Error:")) {
             let errFormat = ERRORES_HTTP["500"]
             errFormat.description = errFormat.description + respuesta[0][0].respuestaOut
-            reply.status(errFormat.code).send( {error:errFormat,response:null})
-        }else  if(respuesta[0][0].respuestaOut.includes("Encomienda creada exitosamente.")){
-            reply.status(ERRORES_HTTP["200"].code).send( {error:null,response:respuesta[0][0].respuestaOut})
-        }else {
+            reply.status(errFormat.code).send({error: errFormat, response: null})
+        } else if (respuesta[0][0].respuestaOut.includes("Encomienda creada exitosamente.")) {
+            reply.status(ERRORES_HTTP["200"].code).send({error: null, response: respuesta[0][0].respuestaOut})
+        } else {
             let errFormat = ERRORES_HTTP["500"]
             errFormat.description = errFormat.description + JSON.stringify(respuesta)
-            reply.status(ERRORES_HTTP["500"].code).send( {error:errFormat,response:null})
+            reply.status(ERRORES_HTTP["500"].code).send({error: errFormat, response: null})
         }
     } catch (err) {
         let errFormat = ERRORES_HTTP["500"]
-        errFormat.description = errFormat.description +err.message
-        reply.status(ERRORES_HTTP["500"].code).send( {error:errFormat,response:null})
+        errFormat.description = errFormat.description + err.message
+        reply.status(ERRORES_HTTP["500"].code).send({error: errFormat, response: null})
     }
 }
 
@@ -133,41 +87,26 @@ export const crearEncomieda = async (request, reply) =>{
  * @author Daniel Barrera
  */
 
-export const asignarEncomienda = async (request, reply) =>{
+export const asignarEncomienda = async (request, reply) => {
     try {
         const idEncomienda = Number(request.params.idEncomienda)
         const idPlanilla = Number(request.params.idPlanilla)
-        let respuesta
-        const promise1 =  new Promise((resolve, reject)=>{
-            connection.query(
-                " CALL coordinadora.asignaEncomienda(?,?, @resultado)   ",
-                [idEncomienda, idPlanilla],async (error, results,fields)=>{
-
-                    if(error){
-                        return error
-                    }
-                    respuesta = results
-                    return resolve(results)
-                })
-        })
-
-        const promises =[promise1]
-        const result = await Promise.all(promises)
-        if(respuesta[0][0].respuestaOut.includes("Error:")){
+        let respuesta = await asignarEncomiendaService(idEncomienda, idPlanilla)
+        if (respuesta[0][0].respuestaOut.includes("Error:")) {
             let errFormat = ERRORES_HTTP["500"]
             errFormat.description = errFormat.description + respuesta[0][0].respuestaOut
-            reply.status(errFormat.code).send( {error:errFormat,response:null})
-        }else  if(respuesta[0][0].respuestaOut.includes("Encomienda asignada exitosamente.")){
-            reply.status(ERRORES_HTTP["200"].code).send( {error:null,response:respuesta[0][0].respuestaOut})
-        }else {
+            reply.status(errFormat.code).send({error: errFormat, response: null})
+        } else if (respuesta[0][0].respuestaOut.includes("Encomienda asignada exitosamente.")) {
+            reply.status(ERRORES_HTTP["200"].code).send({error: null, response: respuesta[0][0].respuestaOut})
+        } else {
             let errFormat = ERRORES_HTTP["500"]
             errFormat.description = errFormat.description + JSON.stringify(respuesta)
-            reply.status(ERRORES_HTTP["500"].code).send( {error:errFormat,response:null})
+            reply.status(ERRORES_HTTP["500"].code).send({error: errFormat, response: null})
         }
     } catch (err) {
         let errFormat = ERRORES_HTTP["500"]
-        errFormat.description = errFormat.description +err.message
-        reply.status(ERRORES_HTTP["500"].code).send( {error:errFormat,response:null})
+        errFormat.description = errFormat.description + err.message
+        reply.status(ERRORES_HTTP["500"].code).send({error: errFormat, response: null})
     }
 }
 
@@ -180,50 +119,25 @@ export const asignarEncomienda = async (request, reply) =>{
  * @author Daniel Barrera
  */
 
-export const entregarEncomienda = async (request, reply) =>{
+export const entregarEncomienda = async (request, reply) => {
     try {
-
         const id = Number(request.params.id)
-
-        let respuesta
-
-
-
-        const promise1 =  new Promise((resolve, reject)=>{
-            try{
-
-                connection.query(
-                    " CALL coordinadora.entregaEncomienda(? , @resultado)   ",
-                    [id],async (error, results,fields)=>{
-
-                        if(error){
-                            return error
-                        }
-                        respuesta = results
-                        return resolve(results)
-                    })
-            }catch (errerr){
-
-            }
-        })
-
-        const promises =[promise1]
-        const result = await Promise.all(promises)
-        if(respuesta[0][0].respuestaOut.includes("Error:")){
+        let respuesta = await entregarEncomiendaService(id)
+        if (respuesta[0][0].respuestaOut.includes("Error:")) {
             let errFormat = ERRORES_HTTP["500"]
             errFormat.description = errFormat.description + respuesta[0][0].respuestaOut
-            reply.status(errFormat.code).send( {error:errFormat,response:null})
-        }else  if(respuesta[0][0].respuestaOut.includes("Encomienda entregada exitosamente")){
-            reply.status(ERRORES_HTTP["200"].code).send( {error:null,response:respuesta[0][0].respuestaOut})
-        }else {
+            reply.status(errFormat.code).send({error: errFormat, response: null})
+        } else if (respuesta[0][0].respuestaOut.includes("Encomienda entregada exitosamente")) {
+            reply.status(ERRORES_HTTP["200"].code).send({error: null, response: respuesta[0][0].respuestaOut})
+        } else {
             let errFormat = ERRORES_HTTP["500"]
             errFormat.description = errFormat.description + JSON.stringify(respuesta)
-            reply.status(ERRORES_HTTP["500"].code).send( {error:errFormat,response:null})
+            reply.status(ERRORES_HTTP["500"].code).send({error: errFormat, response: null})
         }
     } catch (err) {
         let errFormat = ERRORES_HTTP["500"]
-        errFormat.description = errFormat.description +err.message
-        reply.status(ERRORES_HTTP["500"].code).send( {error:errFormat,response:null})
+        errFormat.description = errFormat.description + err.message
+        reply.status(ERRORES_HTTP["500"].code).send({error: errFormat, response: null})
     }
 }
 /**
@@ -240,75 +154,24 @@ export const entregarEncomienda = async (request, reply) =>{
  * @author Daniel Barrera
  */
 
-export const consultaInformeEncomienda = async (request, reply) =>{
+export const consultaInformeEncomienda = async (request, reply) => {
     try {
         const id = Number(request.params.id)
-        let encomienda
-        let where =''
-        let variables  = []
-//ce.fechaDespacho, ce.estado, ce.idVehiculo
-        if(request.body.fechaInicio){
-            where += " where ce.fechaDespacho >= ?"
-            variables.push(request.body.fechaInicio)
-        }
-        if(request.body.fechaFin){
-            if(where.includes("where") ){
-                where += " and ce.fechaDespacho <= ?"
-                variables.push(request.body.fechaFin)
-            }else{
-                where += " where ce.fechaDespacho <= ?"
-                variables.push(request.body.fechaFin)
-            }
-        }
-        if(request.body.vehiculo){
-            if(where.includes("where") ){
-                where += " and ce.idVehiculo = ?"
-                variables.push(request.body.vehiculo)
-            }else{
-                where += " where ce.idVehiculo = ?"
-                variables.push(request.body.vehiculo)
-            }
-        }
-        if(request.body.estado){
-            if(where.includes("where") ){
-                where += " and ce.estado = ?"
-                variables.push(request.body.estado)
-            }else{
-                where += " where ce.estado = ?"
-                variables.push(request.body.estado)
-            }
-        }
         const pagina = Number(request.body.pagina)
-        let paginado=50
-        const paginaInicia = paginado*pagina
-
-        const promise1 =  new Promise((resolve, reject)=>{
-            connection.query(
-                " select * from  consultaEnvioEncomiendasView ce   " + where + " limit  "+paginaInicia + "," + paginado,
-                variables,async (error, results)=>{
-                    if(error){
-                        return error
-                    }
-                    encomienda = results
-                    return resolve(results)
-                })
-        })
-
-        const promises =[promise1]
-        const result = await Promise.all(promises)
-        if(!encomienda){
-
+        const encuesta = request.body
+        const encomienda = await consultaInformeEncomiendaService(id, pagina, encuesta)
+        if (!encomienda) {
             let errFormat = ERRORES_HTTP["500"]
             errFormat.description = errFormat.description + " No existe la encomienda"
-            reply.status(ERRORES_HTTP["500"].code).send( {error:errFormat,response:null})
-        }else{
-            reply.status(ERRORES_HTTP["200"].code).send( {error:null,response:encomienda})
+            reply.status(ERRORES_HTTP["500"].code).send({error: errFormat, response: null})
+        } else {
+            reply.status(ERRORES_HTTP["200"].code).send({error: null, response: encomienda})
         }
 
     } catch (err) {
         let errFormat = ERRORES_HTTP["500"]
-        errFormat.description = errFormat.description +err.message
-        reply.status(ERRORES_HTTP["500"].code).send( {error:errFormat,response:null})
+        errFormat.description = errFormat.description + err.message
+        reply.status(ERRORES_HTTP["500"].code).send({error: errFormat, response: null})
     }
 }
 
@@ -322,67 +185,22 @@ export const consultaInformeEncomienda = async (request, reply) =>{
  * @returns {Promise<void>}
  * @author Daniel Barrera
  */
-export const consultaInformeMetricas = async (request, reply) =>{
+export const consultaInformeMetricas = async (request, reply) => {
     try {
-
-        let encomienda
-        let where =''
-        let whereVehiculo =''
-        let variables  = []
-//ce.fechaDespacho, ce.estado, ce.idVehiculo
-        if(request.body.fechaInicio){
-            whereVehiculo += " and cv2.fechaDespacho >= ?"
-            where += " where ce.fechaDespacho >= ?"
-            variables.push(request.body.fechaInicio)
-        }
-        if(request.body.fechaFin){
-            if(where.includes("where") ){
-                where += " and ce.fechaDespacho <= ?"
-                whereVehiculo += " and cv2.fechaDespacho <= ?"
-                variables.push(request.body.fechaFin)
-                if(request.body.fechaInicio){
-                    variables.push(request.body.fechaInicio)
-                    variables.push(request.body.fechaFin)
-                }
-            }else{
-                where += " where ce.fechaDespacho <= ?"
-                whereVehiculo += " and           cv2.fechaDespacho <= ?"
-                variables.push(request.body.fechaFin)
-                variables.push(request.body.fechaFin)
-            }
-        }
-        const promise1 =  new Promise((resolve, reject)=>{
-            connection.query(
-                " select cm.estado, cm.estadoTexto, cm.cantidad, cm.total, (cm.cantidad/cm.total) as porcentaje , " +
-                "cm.idVehiculo, cm.placa, cm.conductor " +
-                " from ( " +
-                "   select ce.estado, ce.estadoTexto, count(*) as cantidad,ce.idVehiculo, ce.placa, ce.conductor, " +
-                "    (select count(*) from consultaenvioencomiendasview as cv2 where cv2.idVehiculo=ce.idVehiculo " + whereVehiculo + ")  as total  " +
-                "   from consultaEnvioEncomiendasView ce " + where + " group by ce.idVehiculo, ce.estado, ce.estadoTexto " +
-                " ) as cm       " ,
-                variables,async (error, results)=>{
-                    if(error){
-                        return error
-                    }
-                    encomienda = results
-                    return resolve(results)
-                })
-        })
-
-        const promises =[promise1]
-        const result = await Promise.all(promises)
-        if(!encomienda){
+        const encuestaConsultaMetrica = request.body
+        const encomienda = await consultaInformeMetricasService(encuestaConsultaMetrica)
+        if (!encomienda) {
 
             let errFormat = ERRORES_HTTP["500"]
             errFormat.description = errFormat.description + " No existe la encomienda"
-            reply.status(ERRORES_HTTP["500"].code).send( {error:errFormat,response:null})
-        }else{
-            reply.status(ERRORES_HTTP["200"].code).send( {error:null,response:encomienda})
+            reply.status(ERRORES_HTTP["500"].code).send({error: errFormat, response: null})
+        } else {
+            reply.status(ERRORES_HTTP["200"].code).send({error: null, response: encomienda})
         }
 
     } catch (err) {
         let errFormat = ERRORES_HTTP["500"]
-        errFormat.description = errFormat.description +err.message
-        reply.status(ERRORES_HTTP["500"].code).send( {error:errFormat,response:null})
+        errFormat.description = errFormat.description + err.message
+        reply.status(ERRORES_HTTP["500"].code).send({error: errFormat, response: null})
     }
 }

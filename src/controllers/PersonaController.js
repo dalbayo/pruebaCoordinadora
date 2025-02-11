@@ -1,5 +1,12 @@
-import { connection } from "../database/db.js"
+import {connection} from "../database/db.js"
 import {ERRORES_HTTP} from "../utils/Errores.js"
+import {
+    createPersonaService, deletePersonaService,
+    getPersonaByDocumentoAndTipoService,
+    getPersonaByIdService,
+    getPersonasAllService,
+    updatePersonaService
+} from "../services/PersonaService.js";
 
 
 /**
@@ -19,32 +26,15 @@ import {ERRORES_HTTP} from "../utils/Errores.js"
  * @returns {Promise<void>}
  * @author Daniel Barrera
  */
-export const getPersonasAll = async (request, reply) =>{
+export const getPersonasAll = async (request, reply) => {
     try {
-        let personas  = []
-
-        const promise1 =  new Promise((resolve, reject)=>{
-            connection.query(
-                'SELECT p.id , p.nombres, p.primer_apellido  as primerApelllido, p.segundo_apellido as segundoApellido,  '+
-                        ' p.correo, p.correo , p.direccion, p.numero_documento as numeroDocumento, td.id as idTipoDocumento, td.nombre as tipoDocumentoNombre'+
-                        ' FROM persona p inner join tipo_documento td on td.id = p.id_tipo_documento  ',
-                async (error, results)=>{
-                    if(error){
-                        return error
-                    }
-                    personas = results
-                    return resolve(results) 
-                })
-        })
-
-        const promises =[promise1]
-        const result = await Promise.all(promises)
-        reply.status(ERRORES_HTTP["200"].code).send( {error:null,response:personas})
+        let personas = await getPersonasAllService()
+        reply.status(ERRORES_HTTP["200"].code).send({error: null, response: personas})
 
     } catch (err) {
         let errFormat = ERRORES_HTTP["500"]
-        errFormat.description = errFormat.description +err.message
-        reply.status(ERRORES_HTTP["500"].code).send( {error:errFormat,response:null})
+        errFormat.description = errFormat.description + err.message
+        reply.status(ERRORES_HTTP["500"].code).send({error: errFormat, response: null})
     }
 }
 
@@ -57,41 +47,23 @@ export const getPersonasAll = async (request, reply) =>{
  * @author Daniel Barrera
  */
 
-export const getPersonaById = async (request, reply) =>{
+export const getPersonaById = async (request, reply) => {
     try {
         const id = Number(request.params.id)
-        let persona
-
-        const promise1 =  new Promise((resolve, reject)=>{
-            connection.query(
-
-                'SELECT p.id , p.nombres, p.primer_apellido  as primerApelllido, p.segundo_apellido as segundoApellido,  '+
-                ' p.correo, p.correo , p.direccion, p.numero_documento as numeroDocumento, td.id as idTipoDocumento, td.nombre as tipoDocumentoNombre'+
-                ' FROM persona p inner join tipo_documento td on td.id = p.id_tipo_documento where   p.id = ?  limit 1 ', [id],async (error, results)=>{
-
-                    if(error){
-                        return error
-                    }
-                    persona = results
-                    return resolve(results) 
-                })
-        })
-
-        const promises =[promise1]
-        const result = await Promise.all(promises)
-        if(!persona){
+        const persona = await getPersonaByIdService(id)
+        if (!persona) {
 
             let errFormat = ERRORES_HTTP["500"]
             errFormat.description = errFormat.description + " No existe la persona"
-            reply.status(ERRORES_HTTP["500"].code).send( {error:errFormat,response:null})
-        }else{
-            reply.status(ERRORES_HTTP["200"].code).send( {error:null,response:persona})
+            reply.status(ERRORES_HTTP["500"].code).send({error: errFormat, response: null})
+        } else {
+            reply.status(ERRORES_HTTP["200"].code).send({error: null, response: persona})
         }
 
     } catch (err) {
         let errFormat = ERRORES_HTTP["500"]
-        errFormat.description = errFormat.description +err.message
-        reply.status(ERRORES_HTTP["500"].code).send( {error:errFormat,response:null})
+        errFormat.description = errFormat.description + err.message
+        reply.status(ERRORES_HTTP["500"].code).send({error: errFormat, response: null})
     }
 }
 
@@ -103,40 +75,23 @@ export const getPersonaById = async (request, reply) =>{
  * @returns {Promise<void>}
  * @author Daniel Barrera
  */
-export const getPersonaByDocumentoAndTipo = async (request, reply) =>{
+export const getPersonaByDocumentoAndTipo = async (request, reply) => {
     try {
         const numeroDocumento = request.params.numeroDocumento
         const tipoDocumento = Number(request.params.tipoDocumento)
-        let persona
-
-        const promise1 =  new Promise((resolve, reject)=>{
-            connection.query(
-
-                'SELECT p.id , p.nombres, p.primer_apellido  as primerApelllido, p.segundo_apellido as segundoApellido,  '+
-                ' p.correo, p.correo , p.direccion, p.numero_documento as numeroDocumento, td.id as idTipoDocumento, td.nombre as tipoDocumentoNombre'+
-                ' FROM persona p inner join tipo_documento td on td.id = p.id_tipo_documento where   p.numero_documento = ? and p.id_tipo_documento=?  limit 1 ', [numeroDocumento,tipoDocumento],async (error, results)=>{
-                    if(error){
-                        return error
-                    }
-                    persona = results
-                    return resolve(results) 
-                })
-        })
-
-        const promises =[promise1]
-        const result = await Promise.all(promises)
-        if(!persona){
+        const persona = await getPersonaByDocumentoAndTipoService(numeroDocumento, tipoDocumento)
+        if (!persona) {
 
             let errFormat = ERRORES_HTTP["500"]
             errFormat.description = errFormat.description + " No existe la persona"
-            reply.status(ERRORES_HTTP["500"].code).send( {error:errFormat,response:null})
+            reply.status(ERRORES_HTTP["500"].code).send({error: errFormat, response: null})
         }
 
-        reply.status(ERRORES_HTTP["200"].code).send( {error:null,response:persona})
+        reply.status(ERRORES_HTTP["200"].code).send({error: null, response: persona})
     } catch (err) {
         let errFormat = ERRORES_HTTP["500"]
-        errFormat.description = errFormat.description +err.message
-        reply.status(ERRORES_HTTP["500"].code).send( {error:errFormat,response:null})
+        errFormat.description = errFormat.description + err.message
+        reply.status(ERRORES_HTTP["500"].code).send({error: errFormat, response: null})
     }
 }
 
@@ -157,37 +112,19 @@ export const getPersonaByDocumentoAndTipo = async (request, reply) =>{
  * @returns {Promise<void>}
  * @author Daniel Barrera
  */
-export const createPersona = async (request, reply) =>{
+export const createPersona = async (request, reply) => {
     try {
-        const {persona}  = request.body
+        const {persona} = request.body
         const id = Number(request.params.id)
-        let personas  = []
-
-        const promise1 =  new Promise((resolve, reject)=>{
-            connection.query(
-                " INSERT INTO coordinadora.persona\n" +
-                " (nombres, primer_apellido, segundo_apellido, correo, telefono, direccion, numero_documento, id_tipo_documento)\n" +
-                  "VALUES(?, ?, ?, ?, ?,?,?,?)\n", [request.body.nombres,request.body.primerApellido,request.body.segundoApellido,request.body.correo,request.body.telefono, request.body.direccion,
-                    request.body.numeroDocumento, request.body.tipoDocumento],async (error, results)=>{
-
-                    if(error){
-                        return error
-                    }
-                    personas = results
-                    return resolve(results) 
-                })
-        })
-
-        const promises =[promise1]
-        const result = await Promise.all(promises)
-        if(personas){
-            reply.status(ERRORES_HTTP["200"].code).send( {error:null,response:personas[0]})
-        } 
-        reply.status(ERRORES_HTTP["200"].code).send( {error:null,response:"El persona se ha creado exitosamente"})
+        let personas = await createPersonaService(persona, id)
+        if (personas) {
+            reply.status(ERRORES_HTTP["200"].code).send({error: null, response: personas[0]})
+        }
+        reply.status(ERRORES_HTTP["200"].code).send({error: null, response: "El persona se ha creado exitosamente"})
     } catch (err) {
         let errFormat = ERRORES_HTTP["500"]
-        errFormat.description = errFormat.description +err.message
-        reply.status(ERRORES_HTTP["500"].code).send( {error:errFormat,response:null})
+        errFormat.description = errFormat.description + err.message
+        reply.status(ERRORES_HTTP["500"].code).send({error: errFormat, response: null})
     }
 }
 
@@ -209,59 +146,33 @@ export const createPersona = async (request, reply) =>{
  * @author Daniel Barrera
  */
 
-export const updatePersona = async (request, reply) =>{
+export const updatePersona = async (request, reply) => {
     try {
-        let usuarios  = []
         const id = Number(request.params.id)
-
-        let usuario
-
-        const promiseV =  new Promise((resolve, reject)=>{
-            connection.query(
-                'SELECT * FROM persona WHERE id = ?   limit 1 ', [id],async (error, results)=>{
-
-                    if(error){
-                        return error
-                    }
-                    usuario = results
-                    return resolve(results) 
-                })
-        })
-
-        const promisesv =[promiseV]
-        const resultv = await Promise.all(promisesv)
-        if(!usuario){ 
+        const persona = request.body
+        const personaId = await getPersonaByIdService(id)
+        if (!personaId) {
             let errFormat = ERRORES_HTTP["500"]
             errFormat.description = errFormat.description + "La persona no existe"
-            reply.status(ERRORES_HTTP["500"].code).send( {error:errFormat,response:null})
+            reply.status(ERRORES_HTTP["500"].code).send({error: errFormat, response: null})
         }
-        //fin valida existencia del usuario
 
-        const promise1 =  new Promise((resolve, reject)=>{
-            connection.query(
-                "UPDATE coordinadora.persona\n" +
-                " SET nombres=?, primer_apellido=?, segundo_apellido=?, correo=?, telefono=?, direccion=?, numero_documento=?, id_tipo_documento=?  " +
-                " WHERE id=?  " , [request.body.nombres,request.body.primerApellido,request.body.segundoApellido,request.body.correo,request.body.telefono, request.body.direccion,
-                    request.body.numeroDocumento, request.body.tipoDocumento, id],async (error, results)=>{
+        let personas = await updatePersonaService(id, persona)
 
-                    if(error){
-                        return error
-                    }
-                    usuarios = results
-                    return resolve(results) 
-                })
+        if (personas) {
+            reply.status(ERRORES_HTTP["200"].code).send({
+                error: null,
+                response: "Los datos de la persona se han actualizado con exito"
+            })
+        }
+        reply.status(ERRORES_HTTP["200"].code).send({
+            error: null,
+            response: "Los datos de la persona se han actualizado con exito"
         })
-
-        const promises =[promise1]
-        const result = await Promise.all(promises)
-        if(usuarios){
-            reply.status(ERRORES_HTTP["200"].code).send( {error:null,response:"Los datos de la persona se han actualizado con exito"})
-        } 
-        reply.status(ERRORES_HTTP["200"].code).send( {error:null,response:"Los datos de la persona se han actualizado con exito"})
     } catch (err) {
         let errFormat = ERRORES_HTTP["500"]
-        errFormat.description = errFormat.description +err.message
-        reply.status(ERRORES_HTTP["500"].code).send( {error:errFormat,response:null})
+        errFormat.description = errFormat.description + err.message
+        reply.status(ERRORES_HTTP["500"].code).send({error: errFormat, response: null})
     }
 }
 
@@ -275,55 +186,26 @@ export const updatePersona = async (request, reply) =>{
  * @author Daniel Barrera
  */
 
-export const deletePersona = async (request, reply) =>{
+export const deletePersona = async (request, reply) => {
     try {
-        let usuarios  = []
+        let usuarios = []
         const id = Number(request.params.id)
-
-        // valida existencia del usuario
-        let usuario
-
-        const promiseV =  new Promise((resolve, reject)=>{
-            connection.query(
-                'SELECT * FROM persona WHERE id = ?   limit 1 ', [id],async (error, results)=>{
-                    if(error){
-                        return error
-                    }
-                    usuario = results
-                    return resolve(results) 
-                })
-        })
-
-        const promisesv =[promiseV]
-        const resultv = await Promise.all(promisesv)
-        if(!usuario){
+        const personaId = await getPersonaByIdService(id)
+        if (!personaId) {
             let errFormat = ERRORES_HTTP["500"]
             errFormat.description = errFormat.description + "La persona no existe."
-            reply.status(ERRORES_HTTP["500"].code).send( {error:errFormat,response:null})
+            reply.status(ERRORES_HTTP["500"].code).send({error: errFormat, response: null})
         }
-        //fin valida existencia del usuario
 
-        const promise1 =  new Promise((resolve, reject)=>{
-            connection.query(
-                "DELETE FROM persona WHERE id=?" , [ id],async (error, results)=>{
+        const persona = await deletePersonaService(id)
 
-                    if(error){
-                        return error
-                    }
-                    usuarios = results
-                    return resolve(results)
-                })
-        })
-
-        const promises =[promise1]
-        const result = await Promise.all(promises)
-        if(usuarios){
-            reply.status(ERRORES_HTTP["200"].code).send( {error:null,response:usuarios[0]})
+        if (persona) {
+            reply.status(ERRORES_HTTP["200"].code).send({error: null, response: persona[0]})
         }
-        reply.status(ERRORES_HTTP["200"].code).send( {error:null,response:"La persona ha sido borrada exitosamente"})
+        reply.status(ERRORES_HTTP["200"].code).send({error: null, response: "La persona ha sido borrada exitosamente"})
     } catch (err) {
         let errFormat = ERRORES_HTTP["500"]
-        errFormat.description = errFormat.description +err.message
-        reply.status(ERRORES_HTTP["500"].code).send( {error:errFormat,response:null})
+        errFormat.description = errFormat.description + err.message
+        reply.status(ERRORES_HTTP["500"].code).send({error: errFormat, response: null})
     }
 }
